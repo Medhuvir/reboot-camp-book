@@ -1,0 +1,3 @@
+[build]
+  command = "mkdir -p dist && cp src/style.css dist/ && cp -r images dist/ && sed 's|\\.\\./images/|images/|g' src/index.html > dist/index.html"
+  publish = "dist"
