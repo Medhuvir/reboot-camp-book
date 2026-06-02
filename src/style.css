@@ -913,7 +913,27 @@ blockquote.pull-quote cite {
 
   .nav-menu-head { display: none; }
 
-  .nav-menu-list { list-style: none; padding: 6px 0 10px; }
+  .nav-menu-list { list-style: none; padding: 0; }
+
+  .nav-menu-cta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 18px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--cyan-deep);
+    text-decoration: none;
+    background: #F0FDFF;
+    border-bottom: 1px solid var(--bone);
+    transition: background 0.15s, color 0.15s;
+  }
+  .nav-menu-cta:hover {
+    background: #E0F9FF;
+    color: #0369A1;
+  }
 
   .nav-menu-link {
     display: flex;
