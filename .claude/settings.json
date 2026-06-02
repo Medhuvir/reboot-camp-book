@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-Content \"d:\\\\Claude\\\\reboot-camp-book\\\\src\\\\index.html\")",
+      "Bash(Select-Object -Last 60)",
+      "PowerShell(\\(Get-Content \"d:\\\\Claude\\\\reboot-camp-book\\\\src\\\\style.css\"\\).Count)"
+    ]
+  }
+}

@@ -11,6 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="../images/Favicon@0.75x.png">
 </head>
 <body>
 
@@ -18,12 +19,49 @@
 <div id="progress-bar" aria-hidden="true"></div>
 
 <!-- Navigation -->
-<nav class="ebook-nav" role="navigation" aria-label="Ebook navigation">
+<nav class="ebook-nav" id="ebook-nav" role="navigation" aria-label="Ebook navigation">
   <a href="#cover" class="logo-wrap" aria-label="Reboot Camp home">
     <img src="../images/Reboot-dark.svg" alt="Reboot Camp" class="logo">
   </a>
-  <span class="nav-label">10 Life-Altering Steps</span>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Chapter navigation" aria-expanded="false" aria-controls="nav-menu">
+    <span class="nav-toggle-label">Contents</span>
+    <svg class="nav-toggle-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+      <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="nav-hamburger-bars" aria-hidden="true">
+      <span></span><span></span><span></span>
+    </span>
+  </button>
+  <div class="nav-menu" id="nav-menu" aria-hidden="true">
+    <div class="nav-menu-head">
+      <span class="nav-menu-title">Contents</span>
+      <button class="nav-close" id="nav-close" aria-label="Close navigation">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+          <path d="M1 1L11 11M1 11L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+    <ul class="nav-menu-list" role="list">
+      <li><a href="#note" class="nav-menu-link">A Quick Note from Me</a></li>
+      <li><a href="#how-to" class="nav-menu-link">How to Get the Most Out of This Guide</a></li>
+      <li><a href="#origin" class="nav-menu-link">How Did I Get Here?</a></li>
+      <li class="nav-menu-sep" aria-hidden="true"></li>
+      <li><a href="#step1" class="nav-menu-link"><span class="nav-step-num">01</span>Own It</a></li>
+      <li><a href="#step2" class="nav-menu-link"><span class="nav-step-num">02</span>Don't Look Back</a></li>
+      <li><a href="#step3" class="nav-menu-link"><span class="nav-step-num">03</span>Start Now</a></li>
+      <li><a href="#step4" class="nav-menu-link"><span class="nav-step-num">04</span>Strip Down</a></li>
+      <li><a href="#step5" class="nav-menu-link"><span class="nav-step-num">05</span>Get Off the Grid</a></li>
+      <li><a href="#step6" class="nav-menu-link"><span class="nav-step-num">06</span>Strive for 'F#$k You' Shape</a></li>
+      <li><a href="#step7" class="nav-menu-link"><span class="nav-step-num">07</span>Scare Yourself on the Regular</a></li>
+      <li><a href="#step8" class="nav-menu-link"><span class="nav-step-num">08</span>Emotions: Master Not a Slave</a></li>
+      <li><a href="#step9" class="nav-menu-link"><span class="nav-step-num">09</span>Be Grateful</a></li>
+      <li><a href="#step10" class="nav-menu-link"><span class="nav-step-num">10</span>Help Others</a></li>
+      <li class="nav-menu-sep" aria-hidden="true"></li>
+      <li><a href="#about" class="nav-menu-link">About the Author</a></li>
+    </ul>
+  </div>
 </nav>
+<div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
 
 <!-- ============================================
      COVER
@@ -76,7 +114,6 @@
     <h2 class="section-title" id="note-title">A Quick Note from Me</h2>
   </div>
 </section>
-
 <article class="chapter">
   <div class="ebook-body">
     <div class="body-text">
@@ -90,7 +127,7 @@
       <p>In short, you will not be drawn to success. Success will be drawn to you.</p>
     </div>
     <div class="sign-off">
-      <p>With gratitude, — Bill</p>
+      <p>With gratitude,<br> — <em>Bill</em></p>
     </div>
   </div>
 </article>
@@ -104,7 +141,6 @@
     <h2 class="section-title" id="howto-title">How to Get the Most Out of This Guide</h2>
   </div>
 </section>
-
 <article class="chapter">
   <div class="ebook-body">
     <div class="body-text">
@@ -127,7 +163,6 @@
     <h2 class="section-title" id="origin-title">How Did I Get Here?</h2>
   </div>
 </section>
-
 <article class="chapter">
   <div class="ebook-body">
     <div class="body-text">
@@ -166,7 +201,6 @@
     </blockquote>
   </div>
 </section>
-
 <article class="chapter">
   <div class="ebook-body">
     <div class="body-text">
@@ -241,7 +275,6 @@
     </blockquote>
   </div>
 </section>
-
 <article class="chapter">
   <div class="ebook-body">
     <div class="body-text">
@@ -293,7 +326,6 @@
     </blockquote>
   </div>
 </section>
-
 <article class="chapter">
   <div class="image-wrap" style="margin-bottom:40px;">
     <img src="../images/image4.png" alt="Man standing alone in an empty room, light streaming through the windows" class="chapter-image">
@@ -347,7 +379,6 @@
     </blockquote>
   </div>
 </section>
-
 <article class="chapter">
   <div class="image-wrap" style="margin-bottom:40px;">
     <img src="../images/image2.jpg" alt="Two hands reaching toward each other — raw, stripped back, reaching for something real" class="chapter-image">
@@ -408,7 +439,6 @@
     </blockquote>
   </div>
 </section>
-
 <article class="chapter">
   <div class="ebook-body">
     <div class="body-text">
@@ -453,7 +483,6 @@
     </blockquote>
   </div>
 </section>
-
 <article class="chapter">
   <div class="image-wrap" style="margin-bottom:40px;">
     <img src="../images/image3.png" alt="Confident man at a bar — presence, composure, self-assurance" class="chapter-image">
@@ -517,7 +546,6 @@
     </blockquote>
   </div>
 </section>
-
 <article class="chapter">
   <div class="ebook-body">
     <div class="body-text">
@@ -577,7 +605,6 @@
     </blockquote>
   </div>
 </section>
-
 <article class="chapter">
   <div class="ebook-body">
     <div class="body-text">
@@ -633,7 +660,6 @@
     </blockquote>
   </div>
 </section>
-
 <article class="chapter">
   <div class="image-wrap" style="margin-bottom:40px;">
     <img src="../images/image1.png" alt="Hand holding a compass against a vast open horizon — finding direction" class="chapter-image">
@@ -679,7 +705,6 @@
     </blockquote>
   </div>
 </section>
-
 <article class="chapter">
   <div class="ebook-body">
     <div class="body-text">
@@ -748,21 +773,69 @@
 <footer class="ebook-footer" role="contentinfo">
   <img src="../images/Reboot-dark.svg" alt="Reboot Camp" class="footer-logo">
   <p class="footer-signoff">Stay Authentic. Do the Work.</p>
-  <p class="footer-legal">© 2026 Reboot Camp · Bill McGlone · rebootcampcoaching.com<br>Design by DN Creative LLC · All rights reserved.</p>
+  <p class="footer-legal">© 2026 Reboot Camp · Bill McGlone · rebootcampcoaching.com<br>All rights reserved.</p>
+  <div class="footer-producer">
+    <span class="dn-produced">Produced by</span>
+    <a href="https://dncreative.studio" class="dn-credit" target="_blank" rel="noopener noreferrer" aria-label="DN Creative">
+      <img src="../images/DN-Creative-logo.svg" class="dn-icon" alt="" aria-hidden="true">
+      <span class="dn-name">DN Creative</span>
+    </a>
+  </div>
 </footer>
 
 <script>
 (function() {
+  /* Progress bar */
   var bar = document.getElementById('progress-bar');
-  if (!bar) return;
-  function updateProgress() {
-    var scrollTop = window.scrollY || document.documentElement.scrollTop;
-    var docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    var pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-    bar.style.width = pct.toFixed(1) + '%';
+  if (bar) {
+    function updateProgress() {
+      var scrollTop = window.scrollY || document.documentElement.scrollTop;
+      var docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      var pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      bar.style.width = pct.toFixed(1) + '%';
+    }
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
   }
-  window.addEventListener('scroll', updateProgress, { passive: true });
-  updateProgress();
+
+  /* Chapter nav toggle */
+  var nav     = document.getElementById('ebook-nav');
+  var toggle  = document.getElementById('nav-toggle');
+  var menu    = document.getElementById('nav-menu');
+  var overlay = document.getElementById('nav-overlay');
+  var closeBtn = document.getElementById('nav-close');
+  if (!nav || !toggle || !menu) return;
+
+  function openNav() {
+    nav.classList.add('nav-open');
+    if (overlay) overlay.classList.add('nav-open');
+    toggle.setAttribute('aria-expanded', 'true');
+    menu.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeNav() {
+    nav.classList.remove('nav-open');
+    if (overlay) overlay.classList.remove('nav-open');
+    toggle.setAttribute('aria-expanded', 'false');
+    menu.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  toggle.addEventListener('click', function() {
+    nav.classList.contains('nav-open') ? closeNav() : openNav();
+  });
+
+  if (closeBtn) closeBtn.addEventListener('click', closeNav);
+  if (overlay) overlay.addEventListener('click', closeNav);
+
+  menu.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', closeNav);
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeNav();
+  });
 })();
 </script>
 

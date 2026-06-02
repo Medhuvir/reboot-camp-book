@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "reboot-camp-preview",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "3737", "-d", "."],
+      "port": 3737
+    }
+  ]
+}
