@@ -119,7 +119,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top;
+  object-position: center bottom;
 }
 
 .cover-overlay {
@@ -136,7 +136,7 @@ body {
 .cover-content {
   position: relative;
   z-index: 2;
-  padding: 48px var(--reading-pad);
+  padding: 60px var(--reading-pad) 200px;
   max-width: var(--max-width);
   margin: 0 auto;
   width: 100%;
@@ -209,6 +209,24 @@ body {
   letter-spacing: 0.25em;
   text-transform: uppercase;
   color: rgba(248,250,252,0.6);
+}
+
+/* SCROLL HINT — web only */
+@media screen {
+  @keyframes scroll-bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.45; }
+    50%       { transform: translateX(-50%) translateY(7px); opacity: 0.8; }
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 130px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #F8FAFC;
+    animation: scroll-bounce 2s ease-in-out infinite;
+    pointer-events: none;
+  }
 }
 
 /* ============================================
