@@ -166,7 +166,6 @@ body {
   font-size: 9px;
   font-weight: 900;
   letter-spacing: 0.4em;
-  text-transform: uppercase;
   color: var(--cyan);
   margin-bottom: 16px;
   display: block;
@@ -657,7 +656,6 @@ blockquote.pull-quote cite {
   font-size: 9px;
   font-weight: 900;
   letter-spacing: 0.35em;
-  text-transform: uppercase;
   color: var(--slate);
   margin: 0;
 }
@@ -712,7 +710,6 @@ blockquote.pull-quote cite {
   font-size: clamp(22px, 5vw, 32px);
   font-weight: 900;
   letter-spacing: -0.03em;
-  text-transform: uppercase;
   color: #F8FAFC;
   margin-bottom: 6px;
 }
