@@ -3,7 +3,13 @@
     "allow": [
       "Bash(Get-Content \"d:\\\\Claude\\\\reboot-camp-book\\\\src\\\\index.html\")",
       "Bash(Select-Object -Last 60)",
-      "PowerShell(\\(Get-Content \"d:\\\\Claude\\\\reboot-camp-book\\\\src\\\\style.css\"\\).Count)"
+      "PowerShell(\\(Get-Content \"d:\\\\Claude\\\\reboot-camp-book\\\\src\\\\style.css\"\\).Count)",
+      "Bash(pandoc --version)",
+      "Bash(python -c \"import docx; print\\('python-docx ok'\\)\")",
+      "Bash(python -c \"from bs4 import BeautifulSoup; print\\('bs4 ok'\\)\")",
+      "Bash(pip install *)",
+      "Bash(python3 -m pip install python-docx beautifulsoup4 lxml)",
+      "Bash(python3 export_to_docx.py)"
     ]
   }
 }
