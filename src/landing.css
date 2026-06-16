@@ -53,6 +53,27 @@
   .landing-nav-link:not(.cta-button) {
     display: none;
   }
+
+  .landing-nav.ebook-nav {
+    padding-left: 16px;
+    padding-right: 16px;
+    gap: 8px;
+  }
+
+  .landing-nav-links {
+    gap: 8px;
+  }
+
+  .ebook-nav.landing-nav img.logo {
+    height: 16px;
+  }
+
+  .landing-nav .cta-button-sm {
+    padding: 7px 10px;
+    font-size: 9px;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
 }
 
 /* ============================================
@@ -350,6 +371,13 @@
   border: 1px solid var(--silver);
   padding: 28px 24px;
   background: #ffffff;
+}
+
+@media (max-width: 640px) {
+  .testimonial-card {
+    width: 82%;
+    min-height: 0;
+  }
 }
 
 .testimonial-arrow {
