@@ -1,0 +1,590 @@
+/* ============================================
+   REBOOT CAMP LANDING PAGE
+   Built on the Blueprint v1.3 tokens in style.css.
+   Layout/component patterns borrowed from a coaching-site
+   reference, restyled sharp-edged in Blueprint colors —
+   no rounded corners, no pill buttons.
+   ============================================ */
+
+/* CONTENT WIDTH — match the hero's 860px column.
+   Overrides style.css's 680px ebook reading width, scoped to
+   this page only (landing.css isn't loaded by the ebook). */
+.ebook-body,
+.about-inner {
+  max-width: 860px;
+}
+
+/* NAV — inline links on desktop, hamburger drawer below 640px */
+.landing-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.landing-nav .nav-toggle {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .landing-nav .nav-toggle {
+    display: flex;
+  }
+}
+
+.landing-nav-link {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: rgba(248,250,252,0.75);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.landing-nav-link:hover {
+  color: var(--cyan);
+}
+
+.cta-button-sm {
+  padding: 10px 20px;
+  margin-top: 0;
+}
+
+@media (max-width: 640px) {
+  .landing-nav-link:not(.cta-button) {
+    display: none;
+  }
+}
+
+/* ============================================
+   HERO
+   ============================================ */
+.landing-hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.landing-hero-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center bottom;
+}
+
+.landing-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(15,23,42,0.55) 0%,
+    rgba(15,23,42,0.75) 60%,
+    rgba(15,23,42,0.95) 100%
+  );
+}
+
+.landing-hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 100px var(--reading-pad) 100px;
+  max-width: 860px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.landing-hero-sub {
+  font-size: 16px;
+  font-weight: 500;
+  color: rgba(248,250,252,0.8);
+  line-height: 1.6;
+  max-width: 480px;
+  margin-bottom: 32px;
+}
+
+.landing-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+}
+
+.landing-hero-actions .cta-button {
+  margin-top: 0;
+}
+
+.cta-button-secondary {
+  display: inline-block;
+  background: transparent;
+  color: #F8FAFC;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 16px 32px;
+  border: 1px solid rgba(248,250,252,0.4);
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.cta-button-secondary:hover {
+  border-color: var(--cyan);
+  color: var(--cyan);
+}
+
+/* ============================================
+   SHARED CARD TITLE/DESC — used by process cards
+   ============================================ */
+.problem-card-title {
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: var(--midnight);
+  margin-bottom: 10px;
+}
+
+.problem-card-desc {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--slate);
+  line-height: 1.7;
+  max-width: 640px;
+}
+
+/* ============================================
+   FEATURE BLOCK — "1:1 Coaching"
+   ============================================ */
+.feature-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .feature-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.feature-media {
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+}
+
+.feature-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.feature-content {
+  background: var(--midnight);
+  padding: 56px var(--reading-pad);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.feature-content > * {
+  max-width: 440px;
+}
+
+.feature-title {
+  font-size: clamp(26px, 5vw, 36px);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: #F8FAFC;
+  line-height: 1.05;
+  margin: 8px 0 16px;
+}
+
+.feature-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(248,250,252,0.75);
+  line-height: 1.8;
+  margin-bottom: 28px;
+}
+
+/* ============================================
+   PROCESS GRID — "How It Works"
+   ============================================ */
+.process-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1px;
+  background: var(--bone);
+  margin: 32px 0;
+}
+
+.process-card {
+  background: #ffffff;
+  padding: 40px var(--reading-pad);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.process-num {
+  font-size: 56px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--cyan);
+  display: block;
+  margin-bottom: 20px;
+}
+
+/* ============================================
+   PRIMARY CTA — floating card
+   ============================================ */
+.landing-cta-section {
+  position: relative;
+  background: var(--midnight);
+  padding: 80px var(--reading-pad);
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.landing-cta-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.15;
+}
+
+.landing-cta-card {
+  position: relative;
+  z-index: 1;
+  background: var(--cyan);
+  padding: 48px var(--reading-pad);
+  max-width: 860px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 24px 48px -12px rgba(0,0,0,0.45);
+}
+
+.landing-cta-title {
+  font-size: clamp(24px, 6vw, 36px);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: #000000;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+
+.landing-cta-text {
+  font-size: 15px;
+  font-weight: 700;
+  color: rgba(0,0,0,0.7);
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+
+.cta-button-dark {
+  background: var(--midnight);
+  color: #F8FAFC;
+}
+
+.cta-button-dark:hover {
+  background: var(--gunmetal);
+}
+
+/* ============================================
+   TESTIMONIALS (placeholder)
+   ============================================ */
+.testimonial-section {
+  background: var(--bone);
+  padding: 80px 0;
+}
+
+.coming-soon-badge {
+  display: inline-block;
+  background: var(--cyan);
+  color: #000000;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  margin-top: 8px;
+}
+
+.testimonial-carousel {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.testimonial-track {
+  display: flex;
+  align-items: stretch;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  flex: 1;
+  min-width: 0;
+  padding-bottom: 4px;
+}
+
+.testimonial-track::-webkit-scrollbar {
+  display: none;
+}
+
+.testimonial-card {
+  flex: 0 0 auto;
+  width: calc((100% - 40px) / 3);
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  scroll-snap-align: start;
+  border: 1px solid var(--silver);
+  padding: 28px 24px;
+  background: #ffffff;
+}
+
+.testimonial-arrow {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  background: #ffffff;
+  border: 1px solid var(--silver);
+  color: var(--midnight);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.testimonial-arrow:hover {
+  border-color: var(--cyan);
+  color: var(--cyan-deep);
+}
+
+.testimonial-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.testimonial-dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  background: var(--silver);
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, width 0.2s;
+}
+
+.testimonial-dot.is-active {
+  width: 24px;
+  background: var(--cyan);
+}
+
+.testimonial-sample-tag {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--fog);
+  margin-bottom: 16px;
+  display: block;
+}
+
+.testimonial-quote {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--midnight);
+  line-height: 1.7;
+  margin-bottom: 20px;
+  flex: 1;
+}
+
+.testimonial-person {
+  margin-top: auto;
+}
+
+.testimonial-name {
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--midnight);
+  margin-bottom: 2px;
+}
+
+.testimonial-role {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--slate);
+}
+
+/* ============================================
+   NEWSLETTER — Substack signup
+   ============================================ */
+.newsletter-block {
+  background: var(--midnight);
+}
+
+.newsletter-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .newsletter-grid {
+    grid-template-columns: 1.1fr 1fr;
+  }
+}
+
+.newsletter-content {
+  padding: 80px var(--reading-pad);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.newsletter-title {
+  font-size: clamp(28px, 5vw, 40px);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: #F8FAFC;
+  margin: 12px 0 28px;
+}
+
+.newsletter-form {
+  display: flex;
+  border: 1px solid rgba(248,250,252,0.25);
+  max-width: 440px;
+}
+
+.newsletter-input {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: none;
+  padding: 16px 20px;
+  color: #F8FAFC;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.newsletter-input::placeholder {
+  color: rgba(248,250,252,0.5);
+}
+
+.newsletter-input:focus {
+  outline: none;
+  background: rgba(248,250,252,0.05);
+}
+
+.newsletter-submit {
+  background: var(--cyan);
+  color: #000000;
+  border: none;
+  padding: 16px 28px;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.newsletter-submit:hover {
+  background: var(--cyan-deep);
+}
+
+.newsletter-disclaimer {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--fog);
+  margin-top: 14px;
+}
+
+.newsletter-media {
+  min-height: 280px;
+  overflow: hidden;
+}
+
+.newsletter-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ============================================
+   CLOSING STATEMENT
+   ============================================ */
+.closing-statement {
+  background: var(--cyan);
+  padding: 80px var(--reading-pad);
+  text-align: center;
+}
+
+.closing-statement h2 {
+  font-size: clamp(48px, 14vw, 140px);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  line-height: 0.9;
+  color: var(--midnight);
+  margin: 0;
+}
+
+/* ============================================
+   ANIMATION
+   ============================================ */
+@keyframes cta-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(6,182,212,0); }
+  50%      { box-shadow: 0 0 20px 4px rgba(6,182,212,0.55); }
+}
+
+.cta-button {
+  animation: cta-glow 2.6s ease-in-out infinite;
+}
+
+.animate-heading {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+.animate-heading.in-view {
+  animation: heading-fade-down 0.7s ease-out forwards;
+}
+
+@keyframes heading-fade-down {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-button {
+    animation: none;
+  }
+  .animate-heading {
+    opacity: 1;
+    transform: none;
+  }
+  .animate-heading.in-view {
+    animation: none;
+  }
+}
