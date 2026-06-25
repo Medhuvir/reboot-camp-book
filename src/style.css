@@ -1129,3 +1129,79 @@ blockquote.pull-quote cite {
   color: var(--silver);
   white-space: nowrap;
 }
+
+/* ============================================
+   DOWNLOAD DROPDOWN
+   ============================================ */
+.download-dropdown {
+  position: relative;
+  display: inline-block;
+  margin-top: 28px;
+}
+
+.download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: var(--cyan);
+  color: var(--midnight);
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.download-btn:hover {
+  background: #22d3ee;
+}
+
+.dropdown-chevron {
+  transition: transform 0.2s;
+}
+
+.download-btn[aria-expanded="true"] .dropdown-chevron {
+  transform: rotate(180deg);
+}
+
+.download-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  min-width: 100%;
+  background: var(--midnight);
+  border: 1px solid var(--cyan);
+  list-style: none;
+  margin: 0;
+  padding: 4px 0;
+  z-index: 100;
+}
+
+.download-menu.is-open {
+  display: block;
+}
+
+.download-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  color: #F8FAFC;
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background 0.15s, color 0.15s;
+}
+
+.download-option:hover {
+  background: var(--cyan);
+  color: var(--midnight);
+}
