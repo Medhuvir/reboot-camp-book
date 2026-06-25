@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-generate.py — Reboot Camp book builder
+generate.py - Reboot Camp book builder
 Usage:
-  python generate.py          → both PDF + EPUB
-  python generate.py --pdf    → PDF only
-  python generate.py --epub   → EPUB only
+  python generate.py          -> both PDF + EPUB
+  python generate.py --pdf    -> PDF only
+  python generate.py --epub   -> EPUB only
 """
 
 import argparse
@@ -14,7 +14,8 @@ import sys
 from pathlib import Path
 
 ROOT     = Path(__file__).parent
-SRC      = ROOT / 'src'
+SRC      = ROOT / 'src' / 'book'
+CSS      = ROOT / 'src' / 'style.css'
 IMAGES   = ROOT / 'images'
 OUTPUT   = ROOT / 'output'
 HTML     = SRC / 'index.html'
@@ -31,6 +32,27 @@ def read_html():
 def log(msg):
     print(f'  {msg}')
 
+# Patterns for elements that only make sense on the web
+_WEB_ONLY = [
+    # progress bar
+    re.compile(r'<div[^>]*\bid="progress-bar"[^>]*>.*?</div>', re.DOTALL | re.IGNORECASE),
+    # site navigation
+    re.compile(r'<nav\b[^>]*>.*?</nav>', re.DOTALL | re.IGNORECASE),
+    # nav overlay backdrop
+    re.compile(r'<div[^>]*\bid="nav-overlay"[^>]*>.*?</div>', re.DOTALL | re.IGNORECASE),
+    # download dropdown on cover
+    re.compile(r'<div[^>]*\bclass="download-dropdown"[^>]*>.*?</div>', re.DOTALL | re.IGNORECASE),
+    # CTA button (external call-booking link)
+    re.compile(r'<a[^>]*\bclass="cta-button"[^>]*>.*?</a>', re.DOTALL | re.IGNORECASE),
+    # all inline scripts
+    re.compile(r'<script\b[^>]*>.*?</script>', re.DOTALL | re.IGNORECASE),
+]
+
+def strip_web_elements(html):
+    for pattern in _WEB_ONLY:
+        html = pattern.sub('', html)
+    return html
+
 
 # ─── PDF ────────────────────────────────────────────────────────────────────
 
@@ -44,18 +66,17 @@ def build_pdf():
     out = OUTPUT / 'reboot-camp.pdf'
     log('Building PDF...')
 
-    # base_url must point to src/ so WeasyPrint resolves relative image paths
-    WP(filename=str(HTML), base_url=str(SRC)).write_pdf(str(out))
+    clean = strip_web_elements(read_html())
+    WP(string=clean, base_url=str(SRC)).write_pdf(str(out))
     size_kb = out.stat().st_size // 1024
-    log(f'Done → output/reboot-camp.pdf  ({size_kb} KB)')
+    log(f'Done -> output/reboot-camp.pdf  ({size_kb} KB)')
 
 
 # ─── EPUB ────────────────────────────────────────────────────────────────────
 
 CHAPTERS = [
+    ('toc',     'Contents',                           ''),
     ('note',    'A Quick Note From Me',               ''),
-    ('how-to',  'How to Get the Most Out of This',    ''),
-    ('origin',  'How Did I Get Here?',                ''),
     ('step1',   'Own It',                             'Step 1'),
     ('step2',   "Don't Look Back",                    'Step 2'),
     ('step3',   'Start Now',                          'Step 3'),
@@ -68,6 +89,61 @@ CHAPTERS = [
     ('step10',  'Help Others',                        'Step 10'),
     ('about',   'About the Author',                   ''),
 ]
+
+# Title page XHTML — shown right after the cover image in EPUB readers
+_TITLE_PAGE = (
+    '<?xml version="1.0" encoding="utf-8"?>'
+    '<!DOCTYPE html>'
+    '<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">'
+    '<head><title>Reboot Camp</title><meta charset="utf-8"/>'
+    '<link rel="stylesheet" href="../style/main.css" type="text/css"/></head>'
+    '<body>'
+    '<section epub:type="titlepage" style="'
+    'background:#0F172A;min-height:100vh;display:flex;flex-direction:column;'
+    'justify-content:center;align-items:flex-start;padding:60px 48px;">'
+    '<span style="font-size:9px;font-weight:900;letter-spacing:0.4em;'
+    'text-transform:uppercase;color:#06B6D4;display:block;margin-bottom:16px;">'
+    'Bill McGlone</span>'
+    '<h1 style="font-size:48px;font-weight:900;letter-spacing:-0.03em;'
+    'text-transform:uppercase;color:#F8FAFC;line-height:1.05;margin-bottom:16px;">'
+    'Reboot Camp</h1>'
+    '<p style="font-size:18px;font-weight:300;color:rgba(248,250,252,0.75);'
+    'line-height:1.5;max-width:480px;margin-bottom:32px;">'
+    '10 Life-Altering Steps to Take You From <em>Surviving</em> to <em>Thriving</em> After 40'
+    '</p>'
+    '<div style="width:48px;height:2px;background:#06B6D4;"></div>'
+    '</section>'
+    '</body></html>'
+)
+
+
+def _epub_css(css_text):
+    """Strip @media print and @page blocks — irrelevant in EPUB readers."""
+    result = []
+    i = 0
+    while i < len(css_text):
+        m = re.search(r'@(?:media\s+print|page)\b', css_text[i:])
+        if not m:
+            result.append(css_text[i:])
+            break
+        result.append(css_text[i:i + m.start()])
+        i += m.start()
+        brace = css_text.find('{', i)
+        if brace == -1:
+            break
+        depth, j = 0, brace
+        while j < len(css_text):
+            if css_text[j] == '{':
+                depth += 1
+            elif css_text[j] == '}':
+                depth -= 1
+                if depth == 0:
+                    i = j + 1
+                    break
+            j += 1
+        else:
+            break
+    return ''.join(result)
 
 
 def _find_tag_end(html, start):
@@ -138,12 +214,12 @@ def extract_chapters(html_src):
 def chapter_to_xhtml(ch_id, title, step_lbl, content, css):
     """Wrap chapter content in valid XHTML for EPUB."""
     display = f'{step_lbl}: {title}' if step_lbl else title
-    # Fix image paths for EPUB packaging (images live at images/ in EPUB)
-    body = content.replace('src="../images/', 'src="../images/')
+    # HTML source uses ../../images/ (relative to src/book/); EPUB needs ../images/
+    body = content.replace('src="../../images/', 'src="../images/')
     return (
         '<?xml version="1.0" encoding="utf-8"?>'
         '<!DOCTYPE html>'
-        '<html xmlns="http://www.w3.org/1999/xhtml">'
+        '<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">'
         '<head>'
         f'<title>{display}</title>'
         '<meta charset="utf-8"/>'
@@ -163,7 +239,7 @@ def build_epub():
         sys.exit(1)
 
     out      = OUTPUT / 'reboot-camp.epub'
-    html_src = read_html()
+    html_src = strip_web_elements(read_html())
     log('Building EPUB...')
 
     book = epub.EpubBook()
@@ -172,19 +248,27 @@ def build_epub():
     book.set_language('en')
     book.add_author('Bill McGlone')
 
-    # Stylesheet
-    with open(SRC / 'style.css', encoding='utf-8') as f:
+    # Cover image (full-page image shown by EPUB readers before any content)
+    cover_img = IMAGES / 'image6.jpg'
+    if cover_img.exists():
+        with open(cover_img, 'rb') as f:
+            book.set_cover('images/image6.jpg', f.read())
+
+    # Stylesheet — strip print-only rules that EPUB readers don't need
+    with open(CSS, encoding='utf-8') as f:
         css_text = f.read()
     css = epub.EpubItem(
         uid='style',
         file_name='style/main.css',
         media_type='text/css',
-        content=css_text.encode('utf-8')
+        content=_epub_css(css_text).encode('utf-8')
     )
     book.add_item(css)
 
-    # Package images
+    # Package images (skip cover — already added by set_cover above)
     for img_path in IMAGES.glob('*'):
+        if img_path == cover_img:
+            continue
         if img_path.suffix.lower() in ('.jpg', '.jpeg', '.png', '.svg', '.gif', '.webp'):
             mt = {
                 '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg',
@@ -200,11 +284,21 @@ def build_epub():
                 )
             book.add_item(img_item)
 
+    # Title page (styled dark page with title + subtitle + author)
+    title_page = epub.EpubHtml(
+        title='Reboot Camp: 10 Life-Altering Steps',
+        file_name='chapters/titlepage.xhtml',
+        lang='en'
+    )
+    title_page.content = _TITLE_PAGE.encode('utf-8')
+    title_page.add_item(css)
+    book.add_item(title_page)
+
     # Extract chapters from HTML
     sections = extract_chapters(html_src)
 
-    spine  = ['nav']
-    toc    = []
+    spine  = ['nav', title_page]
+    toc    = [epub.Link('chapters/titlepage.xhtml', 'Title Page', 'titlepage')]
     pages  = []
 
     for ch_id, ch_title, step_lbl in CHAPTERS:
@@ -231,7 +325,7 @@ def build_epub():
 
     epub.write_epub(str(out), book, {'epub3_pages': False})
     size_kb = out.stat().st_size // 1024
-    log(f'Done → output/reboot-camp.epub  ({size_kb} KB)')
+    log(f'Done -> output/reboot-camp.epub  ({size_kb} KB)')
 
 
 # ─── Main ────────────────────────────────────────────────────────────────────
@@ -244,8 +338,8 @@ def main():
 
     both = not args.pdf and not args.epub
 
-    print('\nReboot Camp — Book Builder')
-    print('─' * 36)
+    print('\nReboot Camp - Book Builder')
+    print('-' * 36)
 
     if args.pdf or both:
         build_pdf()
@@ -253,7 +347,7 @@ def main():
     if args.epub or both:
         build_epub()
 
-    print('─' * 36)
+    print('-' * 36)
     print('  All done. Check the output/ folder.\n')
 
 

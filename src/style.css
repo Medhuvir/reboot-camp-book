@@ -856,12 +856,83 @@ blockquote.pull-quote cite {
     background: rgba(15,23,42,0.7);
   }
 
-  .chapter,
+  /* Chapter opener starts on its own page; body flows directly after — no second forced break */
   .chapter-opener,
   .section-opener,
   .toc-section,
   .about-section {
     page-break-before: always;
+    break-before: page;
+  }
+
+  .chapter {
+    page-break-before: auto;
+    break-before: auto;
+  }
+
+  /* Keep TOC entirely on one page */
+  .toc-section {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  /* Prevent heading orphans — keep chapter head glued to the content that follows */
+  .chapter-opener,
+  .section-opener {
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+
+  .chapter-title,
+  .section-title,
+  .step-label,
+  .step-number {
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+
+  /* Widow / orphan control */
+  p {
+    orphans: 3;
+    widows: 3;
+  }
+
+  /* "A Quick Note from Me" — compress to fit on one page */
+  #note {
+    padding: 32px 0 24px;
+  }
+
+  #note + article.chapter {
+    padding: 24px 0 32px;
+  }
+
+  #note + article.chapter .body-text p,
+  #note + article.chapter .sign-off p {
+    font-size: 9.5pt;
+    line-height: 1.55;
+    margin-bottom: 0.55em;
+  }
+
+  /* About page: 2-col layout + keep on one page */
+  .about-section {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    padding: 48px 0;
+  }
+
+  .author-2col {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 40px;
+    align-items: start;
+    margin-bottom: 0;
+  }
+
+  .author-photo {
+    max-width: none;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
   }
 
   .chapter-image {
@@ -875,8 +946,8 @@ blockquote.pull-quote cite {
 }
 
 @page {
-  margin: 1.5cm 1.8cm;
-  size: 6in 9in;
+  margin: 0;
+  size: 8.5in 11in;
 }
 
 /* ============================================
