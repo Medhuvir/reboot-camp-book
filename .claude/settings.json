@@ -10,7 +10,10 @@
       "Bash(pip install *)",
       "Bash(python3 -m pip install python-docx beautifulsoup4 lxml)",
       "Bash(python3 export_to_docx.py)",
-      "Bash(pip show *)"
+      "Bash(pip show *)",
+      "Bash(git -C d:/Claude/reboot-camp-book ls-files --others --exclude-standard)",
+      "Bash(git -C d:/Claude/reboot-camp-book status)",
+      "Bash(grep -n \"\\\\.\\\\./\\\\.\\\\./images\\\\|headshot\\\\|edit head\" d:/Claude/reboot-camp-book/src/book/index.html)"
     ]
   }
 }
