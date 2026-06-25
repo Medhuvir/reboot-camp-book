@@ -1,5 +1,6 @@
 dist/
-output/
+output/*
+!output/reboot-camp.pdf
 __pycache__/
 *.pyc
 .DS_Store
