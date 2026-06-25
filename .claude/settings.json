@@ -13,7 +13,11 @@
       "Bash(pip show *)",
       "Bash(git -C d:/Claude/reboot-camp-book ls-files --others --exclude-standard)",
       "Bash(git -C d:/Claude/reboot-camp-book status)",
-      "Bash(grep -n \"\\\\.\\\\./\\\\.\\\\./images\\\\|headshot\\\\|edit head\" d:/Claude/reboot-camp-book/src/book/index.html)"
+      "Bash(grep -n \"\\\\.\\\\./\\\\.\\\\./images\\\\|headshot\\\\|edit head\" d:/Claude/reboot-camp-book/src/book/index.html)",
+      "Bash(git add *)",
+      "Bash(sed 's|\\\\\\\\.\\\\\\\\./images/|images/|g')",
+      "Bash(sed 's|\\\\\\\\.\\\\\\\\./\\\\\\\\.\\\\\\\\./images/|../images/|g')",
+      "Bash(git lfs *)"
     ]
   }
 }
