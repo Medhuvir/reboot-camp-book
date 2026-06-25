@@ -27,7 +27,9 @@
       "Bash(python3 -c ' *)",
       "Bash(python -c ' *)",
       "Bash(cp -r images dist/images)",
-      "Bash(sed 's|\\\\.\\\\./\\\\.\\\\./images/|../images/|g' src/book/index.html)"
+      "Bash(sed 's|\\\\.\\\\./\\\\.\\\\./images/|../images/|g' src/book/index.html)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)"
     ]
   }
 }

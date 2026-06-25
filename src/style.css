@@ -1067,6 +1067,11 @@ blockquote.pull-quote cite {
     background: #F0FDFF;
     color: var(--midnight);
   }
+  .nav-menu-link.nav-coming-soon {
+    opacity: 0.4;
+    cursor: default;
+    pointer-events: none;
+  }
 
   .nav-step-num {
     font-size: 9px;
