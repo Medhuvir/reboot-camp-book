@@ -1,3 +1,3 @@
 [build]
-  command = "mkdir -p dist/book && cp -r images dist/images && cp src/style.css dist/style.css && cp src/style.css dist/book/style.css && cp src/landing.css dist/landing.css && sed 's|\\.\\./images/|images/|g' src/landing.html > dist/index.html && sed 's|\\.\\./\\.\\./images/|../images/|g' src/book/index.html > dist/book/index.html"
+  command = "mkdir -p dist/book dist/images && cp -r images/. dist/images/ && cp src/style.css dist/style.css && cp src/style.css dist/book/style.css && cp src/landing.css dist/landing.css && sed 's|\\.\\./images/|images/|g' src/landing.html > dist/index.html && sed 's|\\.\\./\\.\\./images/|../images/|g' src/book/index.html > dist/book/index.html"
   publish = "dist"

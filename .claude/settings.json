@@ -20,7 +20,14 @@
       "Bash(git lfs *)",
       "Bash(cat .github/workflows/*.yml)",
       "Bash(ls .github/)",
-      "Bash(git ls-remote *)"
+      "Bash(git ls-remote *)",
+      "Bash(grep -n \"\\\\.\\\\./\\\\.\\\\./images/\" src/book/index.html)",
+      "Bash(cat .gitattributes)",
+      "Bash(git config *)",
+      "Bash(python3 -c ' *)",
+      "Bash(python -c ' *)",
+      "Bash(cp -r images dist/images)",
+      "Bash(sed 's|\\\\.\\\\./\\\\.\\\\./images/|../images/|g' src/book/index.html)"
     ]
   }
 }
