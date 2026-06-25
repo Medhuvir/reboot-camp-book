@@ -117,33 +117,338 @@ _TITLE_PAGE = (
 )
 
 
-def _epub_css(css_text):
-    """Strip @media print and @page blocks — irrelevant in EPUB readers."""
-    result = []
-    i = 0
-    while i < len(css_text):
-        m = re.search(r'@(?:media\s+print|page)\b', css_text[i:])
-        if not m:
-            result.append(css_text[i:])
-            break
-        result.append(css_text[i:i + m.start()])
-        i += m.start()
-        brace = css_text.find('{', i)
-        if brace == -1:
-            break
-        depth, j = 0, brace
-        while j < len(css_text):
-            if css_text[j] == '{':
-                depth += 1
-            elif css_text[j] == '}':
-                depth -= 1
-                if depth == 0:
-                    i = j + 1
-                    break
-            j += 1
-        else:
-            break
-    return ''.join(result)
+_EPUB_CSS = """
+/* ============================================
+   REBOOT CAMP — EPUB STYLESHEET
+   Hardcoded values only; no CSS variables.
+   Dark-on-light for universal reader compat.
+   ============================================ */
+
+body {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 1em;
+  line-height: 1.75;
+  color: #1a1a1a;
+  background: #ffffff;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Layout ─────────────────────────────── */
+.ebook-body {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 1.2em;
+}
+
+/* ── Cover (title page fallback) ─────────── */
+.cover, .cover-content { display: none; }
+
+/* ── TOC ─────────────────────────────────── */
+.toc-section {
+  background: #f8fafc;
+  padding: 2em 1.2em;
+  border-bottom: 2px solid #06B6D4;
+}
+.toc-inner { max-width: 100%; }
+.toc-overline {
+  display: block;
+  font-size: 0.65em;
+  font-weight: bold;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #06B6D4;
+  margin-bottom: 0.5em;
+}
+.toc-heading {
+  font-size: 1.8em;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #0F172A;
+  margin-bottom: 1.2em;
+  letter-spacing: -0.02em;
+}
+.toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-top: 1px solid #cbd5e1;
+}
+.toc-list li {
+  border-bottom: 1px solid #cbd5e1;
+}
+.toc-list a {
+  display: flex;
+  gap: 0.75em;
+  padding: 0.75em 0;
+  text-decoration: none;
+  color: #1a1a1a;
+  font-size: 0.9em;
+}
+.toc-num {
+  font-size: 0.65em;
+  font-weight: bold;
+  letter-spacing: 0.2em;
+  color: #06B6D4;
+  text-transform: uppercase;
+  min-width: 2.4em;
+  flex-shrink: 0;
+  padding-top: 0.15em;
+}
+.toc-title { flex: 1; }
+
+/* ── Chapter opener ──────────────────────── */
+.chapter-opener {
+  background: #f1f5f9;
+  padding: 2.5em 1.2em 2em;
+  border-left: 4px solid #06B6D4;
+  margin-bottom: 0;
+}
+.step-number {
+  display: block;
+  font-size: 4em;
+  font-weight: bold;
+  color: #cbd5e1;
+  line-height: 1;
+  margin-bottom: 0.1em;
+  letter-spacing: -0.04em;
+}
+.step-label {
+  display: block;
+  font-size: 0.65em;
+  font-weight: bold;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #06B6D4;
+  margin-bottom: 0.6em;
+}
+.chapter-title {
+  font-size: 1.9em;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #0F172A;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 1em;
+}
+
+/* ── Section opener (non-step) ───────────── */
+.section-opener {
+  background: #f8fafc;
+  padding: 2em 1.2em 1.5em;
+  border-left: 4px solid #06B6D4;
+}
+.accent-rule {
+  width: 3em;
+  height: 2px;
+  background: #06B6D4;
+  margin-bottom: 1em;
+}
+.section-title {
+  font-size: 1.7em;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #0F172A;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5em;
+}
+
+/* ── Chapter body ────────────────────────── */
+.chapter {
+  padding: 1.8em 1.2em;
+}
+.body-text p {
+  margin-bottom: 1em;
+  color: #1a1a1a;
+}
+
+/* ── Pull quote ──────────────────────────── */
+.pull-quote {
+  border-left: 3px solid #06B6D4;
+  margin: 1.5em 0;
+  padding: 0.8em 1.2em;
+  background: #f8fafc;
+}
+.pull-quote p {
+  font-style: italic;
+  font-size: 1.05em;
+  color: #1e293b;
+  margin-bottom: 0.4em;
+}
+.pull-quote cite {
+  font-size: 0.8em;
+  color: #475569;
+  font-style: normal;
+}
+
+/* ── Affirmation ─────────────────────────── */
+.affirmation {
+  border: 2px solid #06B6D4;
+  padding: 1em 1.2em;
+  margin: 1.5em 0;
+  text-align: center;
+  font-style: italic;
+  font-size: 1.05em;
+  color: #0F172A;
+  background: #f0fafe;
+}
+
+/* ── Statement ───────────────────────────── */
+.statement {
+  font-size: 1.15em;
+  font-weight: bold;
+  color: #0F172A;
+  margin: 1.2em 0;
+  line-height: 1.5;
+}
+
+/* ── The Action ──────────────────────────── */
+.the-action {
+  border-top: 2px solid #06B6D4;
+  border-bottom: 2px solid #06B6D4;
+  padding: 1.2em;
+  margin: 1.8em 0;
+  background: #f8fafc;
+}
+.action-label {
+  display: block;
+  font-size: 0.65em;
+  font-weight: bold;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #06B6D4;
+  margin-bottom: 0.5em;
+}
+.action-text {
+  color: #1a1a1a;
+  font-size: 0.95em;
+}
+
+/* ── Callout ─────────────────────────────── */
+.callout {
+  border-left: 3px solid #94a3b8;
+  padding: 0.8em 1em;
+  margin: 1.2em 0;
+  background: #f8fafc;
+  color: #1e293b;
+  font-size: 0.95em;
+}
+.callout.cyan { border-left-color: #06B6D4; }
+
+/* ── Stats ───────────────────────────────── */
+.stat-block {
+  display: block;
+  margin: 1.5em 0;
+}
+.stat-item {
+  display: block;
+  margin-bottom: 1em;
+  padding-bottom: 1em;
+  border-bottom: 1px solid #e2e8f0;
+}
+.stat-number {
+  display: block;
+  font-size: 2em;
+  font-weight: bold;
+  color: #06B6D4;
+  line-height: 1;
+}
+.stat-label {
+  font-size: 0.85em;
+  color: #475569;
+}
+
+/* ── Formula ─────────────────────────────── */
+.formula {
+  font-size: 1.1em;
+  font-weight: bold;
+  text-align: center;
+  color: #0F172A;
+  margin: 1.5em 0;
+  padding: 1em;
+  border: 1px solid #e2e8f0;
+}
+
+/* ── Sign-off ────────────────────────────── */
+.sign-off {
+  border-top: 1px solid #06B6D4;
+  margin-top: 2em;
+  padding-top: 1em;
+  color: #475569;
+  font-style: italic;
+}
+
+/* ── Images ──────────────────────────────── */
+.image-wrap {
+  margin: 1.5em 0;
+  text-align: center;
+}
+.chapter-image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+.image-caption {
+  font-size: 0.75em;
+  color: #475569;
+  margin-top: 0.4em;
+  font-style: italic;
+}
+
+/* ── About section ───────────────────────── */
+.about-section {
+  padding: 2em 1.2em;
+  background: #f8fafc;
+  border-top: 3px solid #06B6D4;
+}
+.about-inner { max-width: 100%; }
+.author-2col { display: block; }
+.author-photo {
+  max-width: 160px;
+  height: auto;
+  border: 2px solid #06B6D4;
+  display: block;
+  margin-bottom: 1em;
+}
+.author-name {
+  font-size: 1.6em;
+  font-weight: bold;
+  color: #0F172A;
+  margin-bottom: 0.2em;
+}
+.author-role {
+  display: block;
+  font-size: 0.65em;
+  font-weight: bold;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #06B6D4;
+  margin-bottom: 1em;
+}
+.about-text { color: #1a1a1a; font-size: 0.95em; }
+.about-text p { margin-bottom: 0.9em; }
+
+/* ── Footer ──────────────────────────────── */
+.ebook-footer {
+  text-align: center;
+  padding: 1.5em 1em;
+  border-top: 1px solid #e2e8f0;
+  margin-top: 2em;
+}
+.footer-signoff {
+  font-style: italic;
+  color: #475569;
+  margin-bottom: 0.5em;
+}
+.footer-legal {
+  font-size: 0.75em;
+  color: #94a3b8;
+}
+.footer-producer, .dn-credit, .dn-produced, .dn-name, .dn-icon {
+  display: none;
+}
+"""
 
 
 def _find_tag_end(html, start):
@@ -254,14 +559,12 @@ def build_epub():
         with open(cover_img, 'rb') as f:
             book.set_cover('images/image6.jpg', f.read())
 
-    # Stylesheet — strip print-only rules that EPUB readers don't need
-    with open(CSS, encoding='utf-8') as f:
-        css_text = f.read()
+    # Stylesheet — dedicated EPUB CSS with hardcoded values, no CSS variables
     css = epub.EpubItem(
         uid='style',
         file_name='style/main.css',
         media_type='text/css',
-        content=_epub_css(css_text).encode('utf-8')
+        content=_EPUB_CSS.encode('utf-8')
     )
     book.add_item(css)
 
