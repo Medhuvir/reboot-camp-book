@@ -17,7 +17,10 @@
       "Bash(git add *)",
       "Bash(sed 's|\\\\\\\\.\\\\\\\\./images/|images/|g')",
       "Bash(sed 's|\\\\\\\\.\\\\\\\\./\\\\\\\\.\\\\\\\\./images/|../images/|g')",
-      "Bash(git lfs *)"
+      "Bash(git lfs *)",
+      "Bash(cat .github/workflows/*.yml)",
+      "Bash(ls .github/)",
+      "Bash(git ls-remote *)"
     ]
   }
 }
