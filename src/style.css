@@ -677,8 +677,8 @@ blockquote.pull-quote cite {
 }
 
 .author-photo-placeholder {
-  width: 96px;
-  height: 96px;
+  width: 400px;
+  height: 500px;
   border-radius: 0;
   background: var(--gunmetal);
   border: 2px solid var(--cyan);
@@ -697,13 +697,43 @@ blockquote.pull-quote cite {
 }
 
 .author-photo {
-  width: 96px;
-  height: 96px;
+  width: 100%;
+  max-width: 160px;
+  height: auto;
+  aspect-ratio: 4 / 5;
   object-fit: cover;
   object-position: top center;
   display: block;
-  margin-bottom: 28px;
   border: 2px solid var(--cyan);
+}
+
+/* 2-col author layout — photo left, content right */
+.author-2col {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  align-items: start;
+  margin-bottom: 32px;
+}
+
+.author-2col-content {
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (min-width: 768px) {
+  .author-2col {
+    grid-template-columns: 240px 1fr;
+    gap: 48px;
+    align-items: stretch;
+  }
+
+  .author-photo {
+    max-width: none;
+    width: 100%;
+    height: 100%;
+    margin-bottom: 0;
+  }
 }
 
 .author-name {
