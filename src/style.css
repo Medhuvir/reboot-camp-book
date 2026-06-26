@@ -1281,3 +1281,161 @@ blockquote.pull-quote cite {
   background: var(--cyan);
   color: var(--midnight);
 }
+
+/* ============================================
+   CLOSING STATEMENT
+   ============================================ */
+.closing-statement {
+  position: relative;
+  overflow: hidden;
+  background: var(--midnight);
+  text-align: center;
+  padding: 100px 24px;
+}
+
+.closing-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.10;
+  pointer-events: none;
+  user-select: none;
+}
+
+.closing-content {
+  position: relative;
+  z-index: 1;
+}
+
+.closing-statement h2 {
+  font-size: clamp(2.8rem, 8vw, 5.5rem);
+  font-weight: 900;
+  color: var(--cloud);
+  letter-spacing: -0.02em;
+  margin: 0 0 16px;
+  line-height: 1;
+}
+
+.closing-statement p {
+  font-size: clamp(1rem, 2.5vw, 1.35rem);
+  color: var(--cyan);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+/* ============================================
+   EBOOK PROMO CARD
+   ============================================ */
+.promo-card-section {
+  padding: clamp(24px, 4vw, 40px) var(--reading-pad) clamp(48px, 8vw, 80px);
+  background: var(--bg);
+}
+
+.chapter-pre-promo {
+  padding-bottom: 24px;
+}
+
+.promo-card {
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: clamp(32px, 5vw, 64px);
+  align-items: center;
+  background: #fff;
+  border: 1px solid var(--bone);
+  border-radius: 12px;
+  padding: clamp(28px, 5vw, 56px);
+  box-shadow: 0 2px 16px rgba(15,23,42,0.06);
+}
+
+.promo-card-image-wrap {
+  position: relative;
+}
+
+.promo-card-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 6px;
+  box-shadow: 0 16px 48px rgba(15,23,42,0.18), 0 2px 8px rgba(15,23,42,0.08);
+}
+
+.promo-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.promo-card-overline {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cyan-deep);
+  width: fit-content;
+}
+
+.promo-card-title {
+  font-size: clamp(1.35rem, 2.5vw, 1.85rem);
+  font-weight: 800;
+  color: var(--midnight);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.promo-card-body {
+  font-size: clamp(0.875rem, 1.5vw, 0.975rem);
+  color: var(--slate);
+  line-height: 1.75;
+  margin: 0;
+}
+
+.promo-card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--midnight);
+  color: #F8FAFC;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  padding: 14px 24px;
+  border-radius: 4px;
+  width: fit-content;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.promo-card-cta:hover {
+  background: var(--gunmetal);
+  transform: translateY(-1px);
+}
+
+.promo-card-cta svg {
+  flex-shrink: 0;
+  transition: transform 0.15s;
+}
+
+.promo-card-cta:hover svg {
+  transform: translateX(3px);
+}
+
+@media (max-width: 640px) {
+  .promo-card {
+    grid-template-columns: 1fr;
+  }
+
+  .promo-card-image-wrap {
+    max-width: 260px;
+    margin: 0 auto;
+  }
+}
+
