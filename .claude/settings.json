@@ -29,7 +29,17 @@
       "Bash(cp -r images dist/images)",
       "Bash(sed 's|\\\\.\\\\./\\\\.\\\\./images/|../images/|g' src/book/index.html)",
       "Bash(git commit -m ' *)",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(git -C \"d:/Claude/reboot-camp-book\" status)",
+      "Bash(git -C \"d:/Claude/reboot-camp-book\" log --oneline -5)",
+      "Bash(git -C \"d:/Claude/reboot-camp-book\" diff HEAD -- src/index.html src/style.css)",
+      "Bash(git -C \"d:/Claude/reboot-camp-book\" show --stat HEAD)",
+      "Bash(git -C \"d:/Claude/reboot-camp-book\" log --oneline origin/main)",
+      "Bash(git -C \"d:/Claude/reboot-camp-book\" remote get-url origin)",
+      "Bash(git -C \"d:/Claude/reboot-camp-book\" add src/landing.html src/index.html src/style.css)",
+      "Bash(git -C d:/Claude/reboot-camp-book commit -m ' *)",
+      "Bash(git -C \"d:/Claude/reboot-camp-book\" push)",
+      "Bash(git -C \"d:/Claude/reboot-camp-book\" add src/book/index.html)"
     ]
   }
 }
