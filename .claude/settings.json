@@ -39,7 +39,9 @@
       "Bash(git -C \"d:/Claude/reboot-camp-book\" add src/landing.html src/index.html src/style.css)",
       "Bash(git -C d:/Claude/reboot-camp-book commit -m ' *)",
       "Bash(git -C \"d:/Claude/reboot-camp-book\" push)",
-      "Bash(git -C \"d:/Claude/reboot-camp-book\" add src/book/index.html)"
+      "Bash(git -C \"d:/Claude/reboot-camp-book\" add src/book/index.html)",
+      "Bash(gh run *)",
+      "PowerShell(gh run list --repo Medhuvir/reboot-camp-book --limit 5)"
     ]
   }
 }
