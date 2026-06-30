@@ -98,25 +98,34 @@
   }
 
   .landing-nav.ebook-nav {
-    padding-left: 16px;
-    padding-right: 16px;
-    gap: 8px;
+    padding-left: 12px;
+    padding-right: 12px;
+    gap: 6px;
+    flex-wrap: nowrap;
   }
 
   .landing-nav-links {
-    gap: 8px;
+    gap: 6px;
+    flex-shrink: 0;
+    flex-wrap: nowrap;
   }
 
   .ebook-nav.landing-nav img.logo {
-    height: 16px;
+    height: 14px;
   }
 
   .landing-nav .cta-button.cta-button-sm,
   .landing-nav .cta-button-secondary.cta-button-sm {
-    padding: 7px 10px;
+    padding: 6px 10px;
     font-size: 9px;
     letter-spacing: 0.02em;
     white-space: nowrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .landing-nav .ebook-signup-trigger {
+    display: none;
   }
 }
 
