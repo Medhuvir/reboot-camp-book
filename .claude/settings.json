@@ -51,7 +51,8 @@
       "Bash(python -c \"from PIL import Image; im=Image.open\\('images/Reboot-Newsletter.png'\\); print\\(im.size\\)\")",
       "Bash(cat netlify.toml vercel.json)",
       "Bash(grep -ril \"publish\\\\|build\" *.toml *.json)",
-      "Bash(rm -rf dist)"
+      "Bash(rm -rf dist)",
+      "Bash(python -c \"from PIL import Image; im=Image.open\\('images/BookRenderimage.png'\\); print\\(im.size\\)\")"
     ]
   }
 }
