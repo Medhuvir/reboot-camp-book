@@ -22,35 +22,10 @@
     <img src="../images/Reboot-dark.svg" alt="Reboot Camp" class="logo">
   </a>
   <div class="landing-nav-links">
-    <a href="https://thebootup.beehiiv.com/" class="landing-nav-link" target="_blank" rel="noopener">Blog</a>
-    <!-- TODO: replace with real podcast URL -->
-    <a href="#" class="landing-nav-link nav-coming-soon" aria-disabled="true" tabindex="-1">Podcast</a>
-    <a href="book/" class="landing-nav-link">Ebook</a>
+    <button type="button" class="nav-cta-outline ebook-signup-trigger">Subscribe to Newsletter</button>
     <a href="https://calendly.com/bill-rebootcampcoaching" class="cta-button cta-button-sm" aria-label="Book a free intro call" target="_blank" rel="noopener">Book a Call</a>
-    <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu">
-      <span class="nav-hamburger-bars" aria-hidden="true">
-        <span></span><span></span><span></span>
-      </span>
-    </button>
-  </div>
-  <div class="nav-menu" id="nav-menu" aria-hidden="true">
-    <div class="nav-menu-head">
-      <span class="nav-menu-title">Menu</span>
-      <button class="nav-close" id="nav-close" aria-label="Close menu">
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-          <path d="M1 1L11 11M1 11L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
-      </button>
-    </div>
-    <ul class="nav-menu-list" role="list">
-      <li><a href="https://thebootup.beehiiv.com/" class="nav-menu-link" target="_blank" rel="noopener">Blog</a></li>
-      <!-- TODO: replace with real podcast URL -->
-      <li><a href="#" class="nav-menu-link nav-coming-soon" aria-disabled="true" tabindex="-1">Podcast</a></li>
-      <li><a href="book/" class="nav-menu-link">Ebook</a></li>
-    </ul>
   </div>
 </nav>
-<div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
 
 <!-- ============================================
      HERO
@@ -64,8 +39,7 @@
     <div class="cover-rule"></div>
     <p class="landing-hero-sub">Let's work together to build the life you set out to have.</p>
     <div class="landing-hero-actions">
-      <a href="https://calendly.com/bill-rebootcampcoaching" class="cta-button" aria-label="Book a free 30 minute intro call with Bill" target="_blank" rel="noopener">Book a Free Intro Call</a>
-      <a href="book/" class="cta-button-secondary" aria-label="Read the Reboot Camp ebook">Read My Ebook</a>
+      <button type="button" class="cta-button-secondary ebook-signup-trigger" aria-label="Get access to my free ebook">Get Access To My Free Ebook</button>
     </div>
   </div>
 </header>
@@ -164,12 +138,12 @@
       <span class="promo-card-overline">Free Ebook</span>
       <h2 class="promo-card-title" id="promo-card-title">10 Life-Altering Steps to Take You From Surviving to Thriving After&nbsp;40</h2>
       <p class="promo-card-body">This guide cuts through the noise and gives you a concrete, no-BS roadmap to reclaim your energy, your direction, and your edge.</p>
-      <a href="https://rebootcampcoaching.com/book/" class="promo-card-cta" target="_blank" rel="noopener noreferrer">
+      <button type="button" class="promo-card-cta ebook-signup-trigger">
         Read &amp; Download Free Book
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
           <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-      </a>
+      </button>
     </div>
   </div>
 </section>
@@ -219,6 +193,25 @@
   </div>
 </footer>
 
+<!-- ============================================
+     EBOOK SIGNUP MODAL
+     ============================================ -->
+<div id="ebook-modal" class="ebook-modal" role="dialog" aria-modal="true" aria-labelledby="ebook-modal-title" aria-hidden="true">
+  <div class="ebook-modal-backdrop" id="ebook-modal-backdrop"></div>
+  <div class="ebook-modal-panel">
+    <button type="button" class="ebook-modal-close" id="ebook-modal-close" aria-label="Close signup form">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+        <path d="M1 1L11 11M1 11L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <span class="toc-overline">Free Ebook</span>
+    <div class="cover-rule ebook-modal-rule"></div>
+    <h2 class="ebook-modal-title" id="ebook-modal-title">Sign up for our newsletter to get access to your free ebook</h2>
+    <script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="f8115a3a-3103-4c8f-bd59-3f20fd999560"></script>
+    <p class="ebook-modal-disclaimer">Unsubscribe anytime.</p>
+  </div>
+</div>
+
 <script>
 (function() {
   var headings = document.querySelectorAll('.animate-heading');
@@ -239,46 +232,6 @@
   }, { threshold: 0.2 });
 
   headings.forEach(function(h) { observer.observe(h); });
-})();
-
-(function() {
-  var nav = document.getElementById('landing-nav');
-  var toggle = document.getElementById('nav-toggle');
-  var menu = document.getElementById('nav-menu');
-  var overlay = document.getElementById('nav-overlay');
-  var closeBtn = document.getElementById('nav-close');
-  if (!nav || !toggle || !menu) return;
-
-  function openNav() {
-    nav.classList.add('nav-open');
-    if (overlay) overlay.classList.add('nav-open');
-    toggle.setAttribute('aria-expanded', 'true');
-    menu.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeNav() {
-    nav.classList.remove('nav-open');
-    if (overlay) overlay.classList.remove('nav-open');
-    toggle.setAttribute('aria-expanded', 'false');
-    menu.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-  }
-
-  toggle.addEventListener('click', function() {
-    nav.classList.contains('nav-open') ? closeNav() : openNav();
-  });
-
-  if (closeBtn) closeBtn.addEventListener('click', closeNav);
-  if (overlay) overlay.addEventListener('click', closeNav);
-
-  menu.querySelectorAll('a').forEach(function(a) {
-    a.addEventListener('click', closeNav);
-  });
-
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeNav();
-  });
 })();
 
 (function() {
@@ -350,6 +303,37 @@
 
   if (prevBtn) prevBtn.addEventListener('click', function() { step(-1); });
   if (nextBtn) nextBtn.addEventListener('click', function() { step(1); });
+})();
+
+(function() {
+  var modal = document.getElementById('ebook-modal');
+  var closeBtn = document.getElementById('ebook-modal-close');
+  var backdrop = document.getElementById('ebook-modal-backdrop');
+  if (!modal) return;
+
+  function openModal() {
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    if (closeBtn) closeBtn.focus();
+  }
+
+  function closeModal() {
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.ebook-signup-trigger').forEach(function(el) {
+    el.addEventListener('click', openModal);
+  });
+
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+  if (backdrop) backdrop.addEventListener('click', closeModal);
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+  });
 })();
 </script>
 

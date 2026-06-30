@@ -655,3 +655,143 @@
     animation: none;
   }
 }
+
+/* ============================================
+   NAV — Subscribe to Newsletter CTA (outline)
+   ============================================ */
+.nav-cta-outline {
+  display: inline-flex;
+  align-items: center;
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  color: rgba(248,250,252,0.85);
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 1px solid rgba(248,250,252,0.35);
+  padding: 10px 20px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.nav-cta-outline:hover {
+  border-color: var(--cyan);
+  color: var(--cyan);
+}
+
+@media (max-width: 640px) {
+  .landing-nav .nav-cta-outline {
+    padding: 7px 10px;
+    font-size: 9px;
+    letter-spacing: 0.02em;
+  }
+}
+
+/* ============================================
+   EBOOK TRIGGER — button resets for hero + promo card
+   ============================================ */
+button.cta-button,
+button.cta-button-secondary,
+button.promo-card-cta {
+  -webkit-appearance: none;
+  appearance: none;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+button.cta-button,
+button.promo-card-cta {
+  border: none;
+}
+
+/* ============================================
+   EBOOK SIGNUP MODAL
+   ============================================ */
+.ebook-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.ebook-modal.is-open {
+  display: flex;
+}
+
+.ebook-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.88);
+  cursor: pointer;
+}
+
+.ebook-modal-panel {
+  position: relative;
+  z-index: 1;
+  background: var(--midnight);
+  max-width: 500px;
+  width: 100%;
+  padding: 48px 40px 40px;
+  border-top: 3px solid var(--cyan);
+}
+
+.ebook-modal-rule {
+  margin: 10px 0 20px;
+}
+
+.ebook-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  background: none;
+  border: 1px solid rgba(248,250,252,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: rgba(248,250,252,0.6);
+  transition: border-color 0.2s, color 0.2s;
+  padding: 0;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.ebook-modal-close:hover {
+  border-color: var(--cyan);
+  color: var(--cyan);
+}
+
+.ebook-modal-title {
+  font-size: clamp(18px, 4vw, 26px);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #F8FAFC;
+  line-height: 1.1;
+  margin: 0 0 28px;
+}
+
+.ebook-modal-disclaimer {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--fog);
+  margin-top: 12px;
+}
+
+@media (max-width: 600px) {
+  .ebook-modal {
+    padding: 16px;
+  }
+  .ebook-modal-panel {
+    padding: 40px 24px 32px;
+  }
+}
