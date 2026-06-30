@@ -26,36 +26,9 @@
     <img src="../../images/Reboot-dark.svg" alt="Reboot Camp" class="logo">
   </a>
   <div class="landing-nav-links">
-    <a href="https://thebootup.beehiiv.com/" class="landing-nav-link" target="_blank" rel="noopener">Blog</a>
-    <!-- TODO: replace with real podcast URL -->
-    <a href="#" class="landing-nav-link nav-coming-soon" aria-disabled="true" tabindex="-1">Podcast</a>
-    <a href="../../book/" class="landing-nav-link" aria-current="page">Ebook</a>
     <a href="https://calendly.com/bill-rebootcampcoaching" class="cta-button cta-button-sm" aria-label="Book a free intro call" target="_blank" rel="noopener">Book a Call</a>
-    <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu">
-      <span class="nav-hamburger-bars" aria-hidden="true">
-        <span></span><span></span><span></span>
-      </span>
-    </button>
-  </div>
-  <div class="nav-menu" id="nav-menu" aria-hidden="true">
-    <div class="nav-menu-head">
-      <span class="nav-menu-title">Menu</span>
-      <button type="button" class="nav-close" id="nav-close" aria-label="Close menu">
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-          <path d="M1 1L11 11M1 11L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
-      </button>
-    </div>
-    <ul class="nav-menu-list" role="list">
-      <li><a href="https://thebootup.beehiiv.com/" class="nav-menu-link" target="_blank" rel="noopener">Blog</a></li>
-      <!-- TODO: replace with real podcast URL -->
-      <li><a href="#" class="nav-menu-link nav-coming-soon" aria-disabled="true" tabindex="-1">Podcast</a></li>
-      <li><a href="../../book/" class="nav-menu-link">Ebook</a></li>
-      <li><a href="https://calendly.com/bill-rebootcampcoaching" class="nav-menu-link" target="_blank" rel="noopener">Book a Call</a></li>
-    </ul>
   </div>
 </nav>
-<div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
 
 <!-- ============================================
      COVER
@@ -795,44 +768,6 @@
     updateProgress();
   }
 
-  /* Nav toggle */
-  var nav     = document.getElementById('landing-nav');
-  var toggle  = document.getElementById('nav-toggle');
-  var menu    = document.getElementById('nav-menu');
-  var overlay = document.getElementById('nav-overlay');
-  var closeBtn = document.getElementById('nav-close');
-  if (!nav || !toggle || !menu) return;
-
-  function openNav() {
-    nav.classList.add('nav-open');
-    if (overlay) overlay.classList.add('nav-open');
-    toggle.setAttribute('aria-expanded', 'true');
-    menu.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeNav() {
-    nav.classList.remove('nav-open');
-    if (overlay) overlay.classList.remove('nav-open');
-    toggle.setAttribute('aria-expanded', 'false');
-    menu.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-  }
-
-  toggle.addEventListener('click', function() {
-    nav.classList.contains('nav-open') ? closeNav() : openNav();
-  });
-
-  if (closeBtn) closeBtn.addEventListener('click', closeNav);
-  if (overlay) overlay.addEventListener('click', closeNav);
-
-  menu.querySelectorAll('a').forEach(function(a) {
-    a.addEventListener('click', closeNav);
-  });
-
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeNav();
-  });
 })();
 </script>
 

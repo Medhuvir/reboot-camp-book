@@ -83,7 +83,11 @@
   }
 }
 
-.cta-button-sm {
+/* Combined selectors (not just .cta-button-sm) so this reliably beats
+   .cta-button-secondary's own padding regardless of source order —
+   both rules have single-class specificity otherwise. */
+.cta-button.cta-button-sm,
+.cta-button-secondary.cta-button-sm {
   padding: 10px 20px;
   margin-top: 0;
 }
@@ -107,7 +111,8 @@
     height: 16px;
   }
 
-  .landing-nav .cta-button-sm {
+  .landing-nav .cta-button.cta-button-sm,
+  .landing-nav .cta-button-secondary.cta-button-sm {
     padding: 7px 10px;
     font-size: 9px;
     letter-spacing: 0.02em;
@@ -168,12 +173,20 @@
   gap: 16px;
 }
 
-.landing-hero-actions .cta-button {
+.landing-hero-actions .cta-button,
+.landing-hero-actions .cta-button-secondary {
   margin-top: 0;
 }
 
+/* .cta-button-secondary shares the exact box geometry of .cta-button
+   (display, box-sizing, padding, border width, border-radius) — only
+   fill vs. outline differs. Defined here since landing.css isn't
+   loaded by the ebook page. */
 .cta-button-secondary {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
   background: transparent;
   color: #F8FAFC;
   font-size: 11px;
@@ -183,6 +196,7 @@
   text-decoration: none;
   padding: 16px 32px;
   border: 1px solid rgba(248,250,252,0.4);
+  border-radius: 4px;
   transition: border-color 0.2s, color 0.2s;
 }
 
@@ -657,42 +671,10 @@
 }
 
 /* ============================================
-   NAV — Subscribe to Newsletter CTA (outline)
-   ============================================ */
-.nav-cta-outline {
-  display: inline-flex;
-  align-items: center;
-  -webkit-appearance: none;
-  appearance: none;
-  background: transparent;
-  color: rgba(248,250,252,0.85);
-  font-family: inherit;
-  font-size: 11px;
-  font-weight: 900;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  border: 1px solid rgba(248,250,252,0.35);
-  padding: 10px 20px;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: border-color 0.2s, color 0.2s;
-}
-
-.nav-cta-outline:hover {
-  border-color: var(--cyan);
-  color: var(--cyan);
-}
-
-@media (max-width: 640px) {
-  .landing-nav .nav-cta-outline {
-    padding: 7px 10px;
-    font-size: 9px;
-    letter-spacing: 0.02em;
-  }
-}
-
-/* ============================================
-   EBOOK TRIGGER — button resets for hero + promo card
+   EBOOK TRIGGER — button-element resets
+   .cta-button / .cta-button-secondary / .promo-card-cta declare
+   their own border + box-sizing, so a plain UA reset is enough —
+   no per-class border override needed.
    ============================================ */
 button.cta-button,
 button.cta-button-secondary,
@@ -701,11 +683,6 @@ button.promo-card-cta {
   appearance: none;
   font-family: inherit;
   cursor: pointer;
-}
-
-button.cta-button,
-button.promo-card-cta {
-  border: none;
 }
 
 /* ============================================

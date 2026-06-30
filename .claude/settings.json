@@ -41,7 +41,17 @@
       "Bash(git -C \"d:/Claude/reboot-camp-book\" push)",
       "Bash(git -C \"d:/Claude/reboot-camp-book\" add src/book/index.html)",
       "Bash(gh run *)",
-      "PowerShell(gh run list --repo Medhuvir/reboot-camp-book --limit 5)"
+      "PowerShell(gh run list --repo Medhuvir/reboot-camp-book --limit 5)",
+      "Bash(mkdir -p dist/book dist/images dist/output)",
+      "Bash(cp -r images/. dist/images/)",
+      "Bash(cp output/reboot-camp.pdf dist/output/)",
+      "Bash(cp src/style.css dist/style.css)",
+      "Bash(cp src/style.css dist/book/style.css)",
+      "Bash(python3 -c \"from PIL import Image; im=Image.open\\('images/Reboot-Newsletter.png'\\); print\\(im.size\\)\")",
+      "Bash(python -c \"from PIL import Image; im=Image.open\\('images/Reboot-Newsletter.png'\\); print\\(im.size\\)\")",
+      "Bash(cat netlify.toml vercel.json)",
+      "Bash(grep -ril \"publish\\\\|build\" *.toml *.json)",
+      "Bash(rm -rf dist)"
     ]
   }
 }
