@@ -52,7 +52,18 @@
       "Bash(cat netlify.toml vercel.json)",
       "Bash(grep -ril \"publish\\\\|build\" *.toml *.json)",
       "Bash(rm -rf dist)",
-      "Bash(python -c \"from PIL import Image; im=Image.open\\('images/BookRenderimage.png'\\); print\\(im.size\\)\")"
+      "Bash(python -c \"from PIL import Image; im=Image.open\\('images/BookRenderimage.png'\\); print\\(im.size\\)\")",
+      "Read(//d/Claude/**)",
+      "Read(//d//**)",
+      "Read(//d/Claude/dncreativestudio/**)",
+      "Read(//d/Claude/dncreativestudio/dncreativestudio/**)",
+      "Read(//d/Claude/DNPortfolio/**)",
+      "Read(//d/Claude/DNPortfolio/dnportfolio/**)",
+      "Read(//d/Claude/dncreativestudio/dncreativestudio/assets/**)",
+      "Read(//d/Claude/dncreativestudio/dncreativestudio/assets/portfolio/**)",
+      "Bash(echo \"=== Reboot Camp portfolio folder \\(DN site\\) ===\"; find \"/d/Claude/dncreativestudio/dncreativestudio/assets/portfolio/Reboot Camp\" -type f 2>/dev/null; echo; echo \"=== reboot-camp-book images ===\"; ls -la /d/Claude/reboot-camp-book/images 2>/dev/null; echo; echo \"=== reboot-camp-book output ===\"; ls -la /d/Claude/reboot-camp-book/output 2>/dev/null; echo; echo \"=== reboot-camp-book root ===\"; ls -la /d/Claude/reboot-camp-book)",
+      "Read(//d/Claude/dncreativestudio/dncreativestudio/assets/portfolio/Reboot Camp/**)",
+      "Bash(git -C /d/Claude/reboot-camp-book remote -v)"
     ]
   }
 }
