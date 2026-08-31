@@ -25,16 +25,11 @@
   display: none;
 }
 
-@media (max-width: 640px) {
-  .landing-nav .nav-toggle {
-    display: flex;
-  }
-}
-
 .landing-nav-link {
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.05em;
+  text-transform: uppercase;
   color: rgba(248,250,252,0.75);
   text-decoration: none;
   transition: color 0.2s;
@@ -95,6 +90,10 @@
 @media (max-width: 640px) {
   .landing-nav-link:not(.cta-button) {
     display: none;
+  }
+
+  .landing-nav .nav-toggle {
+    display: flex;
   }
 
   .landing-nav.ebook-nav {
@@ -648,6 +647,10 @@
 
 .cta-button {
   animation: cta-glow 2.6s ease-in-out infinite;
+}
+
+.cta-button-no-glow {
+  animation: none;
 }
 
 .animate-heading {

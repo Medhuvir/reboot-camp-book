@@ -14,8 +14,7 @@ import sys
 from pathlib import Path
 
 ROOT     = Path(__file__).parent
-SRC      = ROOT / 'src' / 'book'
-CSS      = ROOT / 'src' / 'style.css'
+SRC      = ROOT
 IMAGES   = ROOT / 'images'
 OUTPUT   = ROOT / 'output'
 HTML     = SRC / 'index.html'
@@ -519,8 +518,9 @@ def extract_chapters(html_src):
 def chapter_to_xhtml(ch_id, title, step_lbl, content, css):
     """Wrap chapter content in valid XHTML for EPUB."""
     display = f'{step_lbl}: {title}' if step_lbl else title
-    # HTML source uses ../../images/ (relative to src/book/); EPUB needs ../images/
-    body = content.replace('src="../../images/', 'src="../images/')
+    # HTML source uses images/ (relative to book/); EPUB packaging puts chapters
+    # in text/ and images in images/, so the EPUB body needs ../images/
+    body = content.replace('src="images/', 'src="../images/')
     return (
         '<?xml version="1.0" encoding="utf-8"?>'
         '<!DOCTYPE html>'

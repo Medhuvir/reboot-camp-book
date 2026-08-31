@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="robots" content="index, follow">
+<meta name="description" content="Listen to the Reboot Radio playlists on Spotify.">
+<meta name="author" content="Bill McGlone">
+<title>Spotify Playlists — Reboot Camp Coaching</title>
+<link rel="canonical" href="https://rebootcampcoaching.com/spotify.html">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://rebootcampcoaching.com/spotify.html">
+<meta property="og:site_name" content="Reboot Camp Coaching">
+<meta property="og:title" content="Spotify Playlists — Reboot Camp Coaching">
+<meta property="og:description" content="Listen to the Reboot Radio playlists on Spotify.">
+<meta property="og:image" content="https://rebootcampcoaching.com/images/Reboot-Newsletter.png">
+<meta property="og:locale" content="en_US">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Spotify Playlists — Reboot Camp Coaching">
+<meta name="twitter:description" content="Listen to the Reboot Radio playlists on Spotify.">
+<meta name="twitter:image" content="https://rebootcampcoaching.com/images/Reboot-Newsletter.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="landing.css">
+<link rel="icon" type="image/png" href="images/Favicon@0.75x.png">
+<link rel="icon" type="image/svg+xml" href="images/Favicon.svg">
+<style>
+  /* Scoped to this page only — playlist cards reuse .process-grid/.process-card,
+     Spotify embed slot uses Blueprint tokens already defined in style.css */
+  .spotify-card {
+    width: 100%;
+    padding: 20px;
+  }
+  .spotify-card iframe {
+    display: block;
+    border-radius: 4px;
+  }
+  .spotify-placeholder {
+    min-height: 352px;
+    background: var(--midnight);
+    color: var(--pewter);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+    border-radius: 4px;
+  }
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="ebook-nav landing-nav" id="landing-nav" aria-label="Primary navigation">
+  <a href="index.html" class="logo-wrap" aria-label="Reboot Camp home">
+    <img src="images/Reboot-dark.svg" alt="Reboot Camp" class="logo">
+  </a>
+  <div class="landing-nav-links">
+    <a href="index.html" class="landing-nav-link">Home</a>
+    <a href="newsletter.html" class="landing-nav-link">Newsletter Archive</a>
+    <a href="podcast.html" class="landing-nav-link">Podcast</a>
+    <a href="spotify.html" class="landing-nav-link">Reboot Radio</a>
+    <a href="https://calendly.com/bill-rebootcampcoaching" class="cta-button cta-button-sm" aria-label="Book a free intro call" target="_blank" rel="noopener">Book a Call</a>
+    <button type="button" class="nav-toggle" id="nav-toggle" aria-haspopup="true" aria-expanded="false" aria-controls="nav-menu" aria-label="Menu">
+      <span class="nav-toggle-label">Menu</span>
+      <span class="nav-hamburger-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+      <span class="nav-toggle-chevron" aria-hidden="true">
+        <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+    </button>
+  </div>
+
+  <div class="nav-menu" id="nav-menu">
+    <div class="nav-menu-head">
+      <span class="nav-menu-title">Menu</span>
+      <button type="button" class="nav-close" id="nav-close" aria-label="Close menu">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 1l12 12M1 13L13 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <ul class="nav-menu-list">
+      <li><a href="index.html" class="nav-menu-link">Home</a></li>
+      <li><a href="newsletter.html" class="nav-menu-link">Newsletter Archive</a></li>
+      <li><a href="podcast.html" class="nav-menu-link">Podcast</a></li>
+      <li><a href="spotify.html" class="nav-menu-link">Reboot Radio</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="nav-overlay" id="nav-overlay"></div>
+
+<!-- ============================================
+     HERO
+     ============================================ -->
+<header class="landing-hero">
+  <img src="images/herobg-blue2.jpg" alt="Layered blue-green hills receding into hazy distance" class="landing-hero-image">
+  <div class="landing-hero-overlay"></div>
+  <div class="landing-hero-content">
+    <span class="cover-overline">The Playlists</span>
+    <h1 class="cover-title animate-heading">Reboot Radio</h1>
+    <div class="cover-rule"></div>
+    <p class="landing-hero-sub">Looking to amp up your workout? Soundtrack your hike? Enhance your creative flow? Take one of these curated playlists for a spin.</p>
+  </div>
+</header>
+
+<!-- ============================================
+     SPOTIFY PLAYLISTS (rendered as cards from PLAYLIST_IDS below)
+     ============================================ -->
+<article class="chapter landing-chapter chapter-pre-promo">
+  <div class="ebook-body">
+    <div id="spotify-playlists"></div>
+  </div>
+</article>
+
+<!-- ============================================
+     FOOTER
+     ============================================ -->
+<footer class="ebook-footer" role="contentinfo">
+  <img src="images/Reboot-dark.svg" alt="Reboot Camp" class="footer-logo">
+  <p class="footer-legal">© 2026 Reboot Camp · Bill McGlone · rebootcampcoaching.com<br>All rights reserved.</p>
+  <div class="footer-producer">
+    <span class="dn-produced">Produced by</span>
+    <a href="https://dncreative.studio" class="dn-credit" target="_blank" rel="noopener noreferrer" aria-label="DN Creative">
+      <img src="images/DN-Creative-logo.svg" class="dn-icon" alt="" aria-hidden="true">
+      <span class="dn-name">DN Creative</span>
+    </a>
+  </div>
+</footer>
+
+<!-- ============================================
+     EBOOK SIGNUP MODAL
+     ============================================ -->
+<div id="ebook-modal" class="ebook-modal" role="dialog" aria-modal="true" aria-labelledby="ebook-modal-title" aria-hidden="true">
+  <div class="ebook-modal-backdrop" id="ebook-modal-backdrop"></div>
+  <div class="ebook-modal-panel">
+    <button type="button" class="ebook-modal-close" id="ebook-modal-close" aria-label="Close signup form">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+        <path d="M1 1L11 11M1 11L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <span class="toc-overline">Free Ebook</span>
+    <div class="cover-rule ebook-modal-rule"></div>
+    <h2 class="ebook-modal-title" id="ebook-modal-title">Sign up for our newsletter to get access to your free ebook</h2>
+    <script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="f8115a3a-3103-4c8f-bd59-3f20fd999560"></script>
+    <p class="ebook-modal-disclaimer">Unsubscribe anytime.</p>
+  </div>
+</div>
+
+<script>
+(function() {
+  var headings = document.querySelectorAll('.animate-heading');
+  if (!headings.length) return;
+
+  if (!('IntersectionObserver' in window)) {
+    headings.forEach(function(h) { h.classList.add('in-view'); });
+    return;
+  }
+
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  headings.forEach(function(h) { observer.observe(h); });
+})();
+
+(function() {
+  var modal = document.getElementById('ebook-modal');
+  var closeBtn = document.getElementById('ebook-modal-close');
+  var backdrop = document.getElementById('ebook-modal-backdrop');
+  if (!modal) return;
+
+  function openModal() {
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    if (closeBtn) closeBtn.focus();
+  }
+
+  function closeModal() {
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.ebook-signup-trigger').forEach(function(el) {
+    el.addEventListener('click', openModal);
+  });
+
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+  if (backdrop) backdrop.addEventListener('click', closeModal);
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+  });
+})();
+
+(function() {
+  // Add a new playlist by appending its ID (or full open.spotify.com/playlist/... URL) here.
+  var PLAYLIST_IDS = [
+    '6Ijih7xZ0GKLVmbZYFnJN0'
+  ];
+
+  var wrap = document.getElementById('spotify-playlists');
+  if (!wrap) return;
+
+  function extractId(value) {
+    var m = value.match(/playlist\/([a-zA-Z0-9]+)/);
+    return m ? m[1] : value;
+  }
+
+  if (!PLAYLIST_IDS.length) {
+    wrap.innerHTML = '<div class="spotify-placeholder">Our Spotify playlists are coming soon.</div>';
+    return;
+  }
+
+  wrap.innerHTML = '<div class="process-grid">' + PLAYLIST_IDS.map(function (raw) {
+    var id = extractId(raw);
+    return '<div class="process-card spotify-card">' +
+      '<iframe src="https://open.spotify.com/embed/playlist/' + id + '?utm_source=generator" ' +
+      'width="100%" height="352" frameborder="0" ' +
+      'allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>' +
+      '</div>';
+  }).join('') + '</div>';
+})();
+</script>
+
+<script src="nav.js" defer></script>
+</body>
+</html>

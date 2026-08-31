@@ -1,3 +1,11 @@
 [build]
-  command = "mkdir -p dist/book dist/images dist/output && cp -r images/. dist/images/ && cp output/reboot-camp.pdf dist/output/ && cp src/style.css dist/style.css && cp src/style.css dist/book/style.css && cp src/landing.css dist/landing.css && cp robots.txt dist/robots.txt && cp sitemap.xml dist/sitemap.xml && sed 's|\\.\\./images/|images/|g' src/index.html > dist/index.html && sed 's|\\.\\./\\.\\./images/|../images/|g; s|\\.\\./\\.\\./output/|../output/|g' src/book/index.html > dist/book/index.html"
+  command = "mkdir -p dist/book/images dist/book/output dist/images && cp -r site/images/. dist/images/ && cp site/style.css dist/style.css && cp site/landing.css dist/landing.css && cp site/nav.js dist/nav.js && sed 's|\\.\\./book/|book/|g' site/index.html > dist/index.html && sed 's|\\.\\./book/|book/|g' site/newsletter.html > dist/newsletter.html && sed 's|\\.\\./book/|book/|g' site/podcast.html > dist/podcast.html && sed 's|\\.\\./book/|book/|g' site/spotify.html > dist/spotify.html && cp -r book/images/. dist/book/images/ && cp book/output/reboot-camp.pdf dist/book/output/reboot-camp.pdf && sed 's|\\.\\./site/|../|g' book/index.html > dist/book/index.html && cp robots.txt dist/robots.txt && cp sitemap.xml dist/sitemap.xml"
   publish = "dist"
+
+[functions]
+  directory = "netlify/functions"
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200

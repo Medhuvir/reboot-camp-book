@@ -31,10 +31,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../style.css">
-<link rel="stylesheet" href="../landing.css">
-<link rel="icon" type="image/png" href="../../images/Favicon@0.75x.png">
-<link rel="icon" type="image/svg+xml" href="../../images/Favicon.svg">
+<link rel="stylesheet" href="../site/style.css">
+<link rel="stylesheet" href="../site/landing.css">
+<link rel="icon" type="image/png" href="images/Favicon@0.75x.png">
+<link rel="icon" type="image/svg+xml" href="images/Favicon.svg">
 
 <script type="application/ld+json">
 {
@@ -65,26 +65,53 @@
 
 <!-- Navigation -->
 <nav class="ebook-nav landing-nav" id="landing-nav" aria-label="Primary navigation">
-  <a href="../../" class="logo-wrap" aria-label="Reboot Camp home">
-    <img src="../../images/Reboot-dark.svg" alt="Reboot Camp" class="logo">
+  <a href="../site/" class="logo-wrap" aria-label="Reboot Camp home">
+    <img src="images/Reboot-dark.svg" alt="Reboot Camp" class="logo">
   </a>
   <div class="landing-nav-links">
+    <a href="../site/index.html" class="landing-nav-link">Home</a>
+    <a href="../site/newsletter.html" class="landing-nav-link">Newsletter Archive</a>
+    <a href="../site/podcast.html" class="landing-nav-link">Podcast</a>
+    <a href="../site/spotify.html" class="landing-nav-link">Reboot Radio</a>
     <a href="https://calendly.com/bill-rebootcampcoaching" class="cta-button cta-button-sm" aria-label="Book a free intro call" target="_blank" rel="noopener">Book a Call</a>
+    <button type="button" class="nav-toggle" id="nav-toggle" aria-haspopup="true" aria-expanded="false" aria-controls="nav-menu" aria-label="Menu">
+      <span class="nav-toggle-label">Menu</span>
+      <span class="nav-hamburger-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+      <span class="nav-toggle-chevron" aria-hidden="true">
+        <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+    </button>
+  </div>
+
+  <div class="nav-menu" id="nav-menu">
+    <div class="nav-menu-head">
+      <span class="nav-menu-title">Menu</span>
+      <button type="button" class="nav-close" id="nav-close" aria-label="Close menu">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 1l12 12M1 13L13 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <ul class="nav-menu-list">
+      <li><a href="../site/index.html" class="nav-menu-link">Home</a></li>
+      <li><a href="../site/newsletter.html" class="nav-menu-link">Newsletter Archive</a></li>
+      <li><a href="../site/podcast.html" class="nav-menu-link">Podcast</a></li>
+      <li><a href="../site/spotify.html" class="nav-menu-link">Reboot Radio</a></li>
+    </ul>
   </div>
 </nav>
+<div class="nav-overlay" id="nav-overlay"></div>
 
 <!-- ============================================
      COVER
      ============================================ -->
 <section id="cover" class="cover" epub:type="cover" aria-label="Cover">
-  <img src="../../images/image6.jpg" alt="Man standing on mountain peak with arms outstretched" class="cover-image">
+  <img src="images/image6.jpg" alt="Man standing on mountain peak with arms outstretched" class="cover-image">
   <div class="cover-overlay"></div>
   <div class="cover-content">
-    <img src="../../images/Reboot-dark.svg" alt="Reboot Camp" class="cover-logo">
+    <img src="images/Reboot-dark.svg" alt="Reboot Camp" class="cover-logo">
     <span class="cover-overline">Bill McGlone</span>
     <h1 class="cover-title">10 Life-Altering Steps to Take You From <em>Surviving</em> to <em>Thriving</em> After 40</h1>
     <div class="cover-rule"></div>
-    <a href="../../output/reboot-camp.pdf" download class="download-btn">
+    <a href="output/reboot-camp.pdf" download class="download-btn">
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
         <path d="M7 1v8M4 6l3 3 3-3M2 11h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
@@ -225,7 +252,7 @@
 
 <!-- Image Divider -->
 <div class="image-wrap">
-  <img src="../../images/image5.jpg" alt="Silhouette of a man at sunset, standing at the edge of something new" class="chapter-image">
+  <img src="images/image5.jpg" alt="Silhouette of a man at sunset, standing at the edge of something new" class="chapter-image">
 </div>
 
 <!-- ============================================
@@ -300,7 +327,7 @@
 </section>
 <article class="chapter">
   <div class="image-wrap" style="margin-bottom:40px;">
-    <img src="../../images/image4.png" alt="Man standing alone in an empty room, light streaming through the windows" class="chapter-image">
+    <img src="images/image4.png" alt="Man standing alone in an empty room, light streaming through the windows" class="chapter-image">
     <p class="image-caption">The moment before you begin. Source: Midjourney</p>
   </div>
   <div class="ebook-body">
@@ -355,7 +382,7 @@
 </section>
 <article class="chapter">
   <div class="image-wrap" style="margin-bottom:40px;">
-    <img src="../../images/image2.jpg" alt="Two hands reaching toward each other — raw, stripped back, reaching for something real" class="chapter-image">
+    <img src="images/image2.jpg" alt="Two hands reaching toward each other — raw, stripped back, reaching for something real" class="chapter-image">
     <p class="image-caption">Photo by Vitaly Taranov on Unsplash</p>
   </div>
   <div class="ebook-body">
@@ -468,7 +495,7 @@
 </section>
 <article class="chapter">
   <div class="image-wrap" style="margin-bottom:40px;">
-    <img src="../../images/image3.png" alt="Confident man at a bar — presence, composure, self-assurance" class="chapter-image">
+    <img src="images/image3.png" alt="Confident man at a bar — presence, composure, self-assurance" class="chapter-image">
     <p class="image-caption">Source: Midjourney</p>
   </div>
   <div class="ebook-body">
@@ -668,7 +695,7 @@
 </section>
 <article class="chapter">
   <div class="image-wrap" style="margin-bottom:40px;">
-    <img src="../../images/image1.png" alt="Hand holding a compass against a vast open horizon — finding direction" class="chapter-image">
+    <img src="images/image1.png" alt="Hand holding a compass against a vast open horizon — finding direction" class="chapter-image">
     <p class="image-caption">Source: Midjourney</p>
   </div>
   <div class="ebook-body">
@@ -761,7 +788,7 @@
 <section id="about" class="about-section" epub:type="biography" aria-labelledby="about-title">
   <div class="about-inner">
     <div class="author-2col">
-      <img src="../../images/bill-author-photo.jpg" alt="Bill McGlone" class="author-photo"/>
+      <img src="images/bill-author-photo.jpg" alt="Bill McGlone" class="author-photo"/>
       <div class="author-2col-content">
         <span class="toc-overline">About</span>
         <h2 class="author-name" id="about-title">Bill McGlone</h2>
@@ -783,14 +810,14 @@
      ============================================ -->
 <footer class="ebook-footer" role="contentinfo">
   <a href="https://rebootcampcoaching.com/" aria-label="Back to Reboot Camp home">
-    <img src="../../images/Reboot-dark.svg" alt="Reboot Camp" class="footer-logo">
+    <img src="images/Reboot-dark.svg" alt="Reboot Camp" class="footer-logo">
   </a>
   <p class="footer-signoff">Your legend is forged in the second half.</p>
   <p class="footer-legal">© 2026 Reboot Camp · Bill McGlone · rebootcampcoaching.com<br>All rights reserved.</p>
   <div class="footer-producer">
     <span class="dn-produced">Produced by</span>
     <a href="https://dncreative.studio" class="dn-credit" target="_blank" rel="noopener noreferrer" aria-label="DN Creative">
-      <img src="../../images/DN-Creative-logo.svg" class="dn-icon" alt="" aria-hidden="true">
+      <img src="images/DN-Creative-logo.svg" class="dn-icon" alt="" aria-hidden="true">
       <span class="dn-name">DN Creative</span>
     </a>
   </div>
@@ -814,5 +841,6 @@
 })();
 </script>
 
+<script src="../site/nav.js" defer></script>
 </body>
 </html>

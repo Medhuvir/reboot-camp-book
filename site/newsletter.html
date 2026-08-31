@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="description" content="A Letter From Camp — weekly newsletter for men over 40 from Bill McGlone, Reboot Camp Coaching.">
+<meta name="author" content="Bill McGlone">
+<title>Newsletter — Reboot Camp Coaching</title>
+<link rel="canonical" href="https://rebootcampcoaching.com/newsletter.html">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://rebootcampcoaching.com/newsletter.html">
+<meta property="og:site_name" content="Reboot Camp Coaching">
+<meta property="og:title" content="Newsletter — Reboot Camp Coaching">
+<meta property="og:description" content="A Letter From Camp — weekly newsletter for men over 40 from Bill McGlone.">
+<meta property="og:image" content="https://rebootcampcoaching.com/images/Reboot-Newsletter.png">
+<meta property="og:locale" content="en_US">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Newsletter — Reboot Camp Coaching">
+<meta name="twitter:description" content="A Letter From Camp — weekly newsletter for men over 40 from Bill McGlone.">
+<meta name="twitter:image" content="https://rebootcampcoaching.com/images/Reboot-Newsletter.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="landing.css">
+<link rel="icon" type="image/png" href="images/Favicon@0.75x.png">
+<link rel="icon" type="image/svg+xml" href="images/Favicon.svg">
+<style>
+  /* Scoped to this page only — post-card date/thumbnail/pagination, using
+     Blueprint tokens and heading formula already defined in style.css */
+  .newsletter-post-date {
+    font-size: clamp(20px, 4vw, 26px);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    color: var(--midnight);
+    line-height: 1;
+    margin-bottom: 10px;
+    display: block;
+  }
+  .newsletter-post-thumb {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    display: block;
+    margin-bottom: 20px;
+  }
+  .newsletter-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 32px;
+  }
+  .newsletter-pagination-status {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--slate);
+  }
+  .newsletter-pagination button:disabled {
+    opacity: 0.35;
+    cursor: default;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="ebook-nav landing-nav" id="landing-nav" aria-label="Primary navigation">
+  <a href="index.html" class="logo-wrap" aria-label="Reboot Camp home">
+    <img src="images/Reboot-dark.svg" alt="Reboot Camp" class="logo">
+  </a>
+  <div class="landing-nav-links">
+    <a href="index.html" class="landing-nav-link">Home</a>
+    <a href="newsletter.html" class="landing-nav-link">Newsletter Archive</a>
+    <a href="podcast.html" class="landing-nav-link">Podcast</a>
+    <a href="spotify.html" class="landing-nav-link">Reboot Radio</a>
+    <a href="https://calendly.com/bill-rebootcampcoaching" class="cta-button cta-button-sm" aria-label="Book a free intro call" target="_blank" rel="noopener">Book a Call</a>
+    <button type="button" class="nav-toggle" id="nav-toggle" aria-haspopup="true" aria-expanded="false" aria-controls="nav-menu" aria-label="Menu">
+      <span class="nav-toggle-label">Menu</span>
+      <span class="nav-hamburger-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+      <span class="nav-toggle-chevron" aria-hidden="true">
+        <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+    </button>
+  </div>
+
+  <div class="nav-menu" id="nav-menu">
+    <div class="nav-menu-head">
+      <span class="nav-menu-title">Menu</span>
+      <button type="button" class="nav-close" id="nav-close" aria-label="Close menu">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 1l12 12M1 13L13 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <ul class="nav-menu-list">
+      <li><a href="index.html" class="nav-menu-link">Home</a></li>
+      <li><a href="newsletter.html" class="nav-menu-link">Newsletter Archive</a></li>
+      <li><a href="podcast.html" class="nav-menu-link">Podcast</a></li>
+      <li><a href="spotify.html" class="nav-menu-link">Reboot Radio</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="nav-overlay" id="nav-overlay"></div>
+
+<!-- ============================================
+     HERO
+     ============================================ -->
+<header class="landing-hero">
+  <img src="images/herobg-blue1.jpg" alt="Layered blue mountain ridges fading into morning fog" class="landing-hero-image">
+  <div class="landing-hero-overlay"></div>
+  <div class="landing-hero-content">
+    <span class="cover-overline">A Letter From Camp</span>
+    <h1 class="cover-title animate-heading">The Newsletter</h1>
+    <div class="cover-rule"></div>
+    <p class="landing-hero-sub">Get helpful tools, insights, and inspiration delivered to your inbox every week. Check out past issues below.</p>
+    <script type="text/javascript" async src="https://subscribe-forms.beehiiv.com/attribution.js"></script>
+    <script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="f8115a3a-3103-4c8f-bd59-3f20fd999560"></script>
+    <p class="newsletter-disclaimer">Unsubscribe anytime.</p>
+  </div>
+</header>
+
+<!-- ============================================
+     NEWSLETTER FEED (from Beehiiv RSS)
+     ============================================ -->
+<article class="chapter landing-chapter chapter-pre-promo">
+  <div class="ebook-body">
+    <div id="newsletter-posts" aria-live="polite"></div>
+    <p id="newsletter-posts-fallback" class="body-text" hidden>
+      <a href="https://rebootcamp.beehiiv.com/archive" target="_blank" rel="noopener">Read the full archive on Beehiiv &rarr;</a>
+    </p>
+  </div>
+</article>
+
+<!-- ============================================
+     FOOTER
+     ============================================ -->
+<footer class="ebook-footer" role="contentinfo">
+  <img src="images/Reboot-dark.svg" alt="Reboot Camp" class="footer-logo">
+  <p class="footer-legal">© 2026 Reboot Camp · Bill McGlone · rebootcampcoaching.com<br>All rights reserved.</p>
+  <div class="footer-producer">
+    <span class="dn-produced">Produced by</span>
+    <a href="https://dncreative.studio" class="dn-credit" target="_blank" rel="noopener noreferrer" aria-label="DN Creative">
+      <img src="images/DN-Creative-logo.svg" class="dn-icon" alt="" aria-hidden="true">
+      <span class="dn-name">DN Creative</span>
+    </a>
+  </div>
+</footer>
+
+<!-- ============================================
+     EBOOK SIGNUP MODAL
+     ============================================ -->
+<div id="ebook-modal" class="ebook-modal" role="dialog" aria-modal="true" aria-labelledby="ebook-modal-title" aria-hidden="true">
+  <div class="ebook-modal-backdrop" id="ebook-modal-backdrop"></div>
+  <div class="ebook-modal-panel">
+    <button type="button" class="ebook-modal-close" id="ebook-modal-close" aria-label="Close signup form">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+        <path d="M1 1L11 11M1 11L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <span class="toc-overline">Free Ebook</span>
+    <div class="cover-rule ebook-modal-rule"></div>
+    <h2 class="ebook-modal-title" id="ebook-modal-title">Sign up for our newsletter to get access to your free ebook</h2>
+    <script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="f8115a3a-3103-4c8f-bd59-3f20fd999560"></script>
+    <p class="ebook-modal-disclaimer">Unsubscribe anytime.</p>
+  </div>
+</div>
+
+<script>
+(function() {
+  var headings = document.querySelectorAll('.animate-heading');
+  if (!headings.length) return;
+
+  if (!('IntersectionObserver' in window)) {
+    headings.forEach(function(h) { h.classList.add('in-view'); });
+    return;
+  }
+
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  headings.forEach(function(h) { observer.observe(h); });
+})();
+
+(function() {
+  var modal = document.getElementById('ebook-modal');
+  var closeBtn = document.getElementById('ebook-modal-close');
+  var backdrop = document.getElementById('ebook-modal-backdrop');
+  if (!modal) return;
+
+  function openModal() {
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    if (closeBtn) closeBtn.focus();
+  }
+
+  function closeModal() {
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.ebook-signup-trigger').forEach(function(el) {
+    el.addEventListener('click', openModal);
+  });
+
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+  if (backdrop) backdrop.addEventListener('click', closeModal);
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+  });
+})();
+
+(function() {
+  var wrap = document.getElementById('newsletter-posts');
+  var fallback = document.getElementById('newsletter-posts-fallback');
+  if (!wrap) return;
+
+  var PAGE_SIZE = 10;
+  var allPosts = [];
+
+  function renderPage(page) {
+    var totalPages = Math.max(1, Math.ceil(allPosts.length / PAGE_SIZE));
+    page = Math.min(Math.max(1, page), totalPages);
+    var start = (page - 1) * PAGE_SIZE;
+    var pagePosts = allPosts.slice(start, start + PAGE_SIZE);
+
+    var cardsHtml = '<div class="process-grid">' + pagePosts.map(function (p) {
+      var date = p.pubDate ? new Date(p.pubDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '';
+      var excerpt = p.excerpt || p.description || '';
+      return '<div class="process-card">' +
+        (p.image ? '<img src="' + p.image + '" alt="" class="newsletter-post-thumb" loading="lazy">' : '') +
+        '<span class="newsletter-post-date">' + date + '</span>' +
+        '<h3 class="problem-card-title">' + p.title + '</h3>' +
+        '<p class="problem-card-desc">' + excerpt + '</p>' +
+        '<a href="' + p.link + '" class="cta-button" target="_blank" rel="noopener">Read The Rest &rarr;</a>' +
+        '</div>';
+    }).join('') + '</div>';
+
+    var pagerHtml = '';
+    if (totalPages > 1) {
+      pagerHtml = '<div class="newsletter-pagination">' +
+        '<button type="button" class="cta-button-secondary cta-button-sm" id="newsletter-prev"' + (page <= 1 ? ' disabled' : '') + '>Previous</button>' +
+        '<span class="newsletter-pagination-status">Page ' + page + ' of ' + totalPages + '</span>' +
+        '<button type="button" class="cta-button-secondary cta-button-sm" id="newsletter-next"' + (page >= totalPages ? ' disabled' : '') + '>Next</button>' +
+        '</div>';
+    }
+
+    wrap.innerHTML = cardsHtml + pagerHtml;
+
+    var prevBtn = document.getElementById('newsletter-prev');
+    var nextBtn = document.getElementById('newsletter-next');
+    if (prevBtn) prevBtn.addEventListener('click', function () {
+      renderPage(page - 1);
+      wrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    if (nextBtn) nextBtn.addEventListener('click', function () {
+      renderPage(page + 1);
+      wrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
+
+  fetch('/api/beehiiv-posts')
+    .then(function (r) { if (!r.ok) throw new Error('bad response'); return r.json(); })
+    .then(function (data) {
+      allPosts = data.posts || [];
+      if (!allPosts.length) throw new Error('empty');
+      renderPage(1);
+    })
+    .catch(function () {
+      if (fallback) fallback.hidden = false;
+    });
+})();
+</script>
+
+<script src="nav.js" defer></script>
+</body>
+</html>

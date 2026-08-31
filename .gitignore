@@ -1,6 +1,9 @@
 dist/
-output/*
-!output/reboot-camp.pdf
+book/output/*
+!book/output/reboot-camp.pdf
 __pycache__/
 *.pyc
 .DS_Store
+
+# Local Netlify folder
+.netlify

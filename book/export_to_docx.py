@@ -9,7 +9,7 @@ from docx.shared import Pt, RGBColor, Inches
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 import os, re
 
-SRC = os.path.join(os.path.dirname(__file__), "src", "index.html")
+SRC = os.path.join(os.path.dirname(__file__), "index.html")
 OUT = os.path.join(os.path.dirname(__file__), "output", "reboot-camp-edit.docx")
 
 os.makedirs(os.path.dirname(OUT), exist_ok=True)

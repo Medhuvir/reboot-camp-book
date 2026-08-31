@@ -1,32 +1,33 @@
-# Reboot Camp Rules — Ebook Builder
+# Reboot Camp Coaching — Website + Ebook Builder
 
-**Bill M · Reboot Camp Coaching**
+**Bill McGlone · Reboot Camp Coaching**
 
-Builds the Reboot Camp Rules ebook from a single HTML source to both PDF and EPUB.
+The primary deployed asset is the marketing site at [rebootcampcoaching.com](https://rebootcampcoaching.com) (`site/`). The ebook (`book/`) is a secondary lead magnet built from a single HTML source to PDF and EPUB.
 
-## Setup
-
-```bash
-pip install -r requirements.txt
-```
-
-## Generate
+## Site
 
 ```bash
-python generate.py
+python -m http.server 3737
 ```
 
-Outputs to `output/`:
+Then open `http://localhost:3737/site/index.html`. Pages: `index.html`, `newsletter.html`, `podcast.html`, `spotify.html`. Shared nav behavior lives in `site/nav.js`.
+
+## Ebook
+
+```bash
+pip install -r book/requirements.txt
+python book/generate.py
+```
+
+Outputs to `book/output/`:
 - `reboot-camp.pdf` — print-ready PDF
 - `reboot-camp.epub` — Kindle/Apple Books compatible
 
-## Edit Content
+Edit content in `book/index.html`; images live in `book/images/`.
 
-All content lives in `src/index.html`. Each chapter is clearly marked with comments.
+## Deploy
 
-## Swap Images
-
-Drop images into the `images/` folder. Update `src` paths in `src/index.html`.
+Netlify builds from `netlify.toml` on push to `main`. The build flattens `site/` into the publish root and nests `book/` underneath it. A Netlify Function (`netlify/functions/beehiiv-posts.js`) proxies the Beehiiv newsletter RSS feed for `site/newsletter.html`.
 
 ## Brand
 

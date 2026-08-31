@@ -37,6 +37,9 @@ body {
   line-height: 1.75;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 /* PROGRESS BAR — web only */
@@ -818,6 +821,7 @@ blockquote.pull-quote cite {
   border-top: 3px solid var(--cyan);
   padding: 40px var(--reading-pad);
   text-align: center;
+  margin-top: auto;
 }
 
 .footer-logo {
@@ -1087,6 +1091,7 @@ blockquote.pull-quote cite {
     font-size: 12px;
     font-weight: 500;
     letter-spacing: 0.03em;
+    text-transform: uppercase;
     color: var(--slate);
     text-decoration: none;
     transition: background 0.15s, color 0.15s;
