@@ -9,7 +9,7 @@ site/                    ← primary marketing website
   index.html              (homepage)
   newsletter.html         (Beehiiv posts, latest 5 via Netlify Function)
   podcast.html            (coming soon — nav link disabled via .nav-coming-soon)
-  spotify.html            (playlist embed, placeholder until Bill sends the ID)
+  radio.html              (playlist embed, placeholder until Bill sends the ID)
   style.css               (shared Blueprint design tokens)
   landing.css             (site-specific overrides, nav behavior)
   nav.js                  (shared hamburger-menu toggle, used by every page incl. book/)
@@ -134,7 +134,7 @@ Drop a new file into `book/images/` and update the `src` path.
 
 - **Newsletter signup** (all pages): Beehiiv embed script with `data-beehiiv-form="f8115a3a-3103-4c8f-bd59-3f20fd999560"` — reuse this exact form ID for any new signup CTA.
 - **Newsletter posts** (`site/newsletter.html`): client-side `fetch('/api/beehiiv-posts')`, proxied server-side by `netlify/functions/beehiiv-posts.js` (RSS feed `https://rss.beehiiv.com/feeds/UvfEUB9QlF.xml`, avoids CORS). The function returns `title`, `description` (RSS subhead), `excerpt` (first real paragraph scraped from `content:encoded`, HTML-stripped), `link`, `pubDate`, and `image` (from `<enclosure>`) per post. Cards show `excerpt` (falling back to `description`), the thumbnail if `image` is present, and paginate client-side at 10 posts per page (Previous/Next, hidden when there's only one page) — nothing sends users off to Beehiiv's own archive except the true fetch-failure fallback link to `https://rebootcamp.beehiiv.com/archive`.
-- **Spotify playlists** (`site/spotify.html`): rendered as a stack of cards (reusing `.process-grid`/`.process-card`), one official Spotify iframe embed per playlist. IDs live in the `PLAYLIST_IDS` array in the page's own `<script>` — add a new playlist by appending its ID or full `open.spotify.com/playlist/...` URL to that array. Currently live: `6Ijih7xZ0GKLVmbZYFnJN0` ("Summer Camp '26 Mix", Reboot Radio profile). If the array is emptied, the page falls back to a "coming soon" placeholder.
+- **Spotify playlists** (`site/radio.html`): rendered as a stack of cards (reusing `.process-grid`/`.process-card`), one official Spotify iframe embed per playlist. IDs live in the `PLAYLIST_IDS` array in the page's own `<script>` — add a new playlist by appending its ID or full `open.spotify.com/playlist/...` URL to that array. Currently live: `6Ijih7xZ0GKLVmbZYFnJN0` ("Summer Camp '26 Mix", Reboot Radio profile). If the array is emptied, the page falls back to a "coming soon" placeholder.
 - **Podcast** (`site/podcast.html`): live, same pattern as the newsletter — client-side `fetch('/api/podcast-episodes')` proxied by `netlify/functions/podcast-episodes.js` (podcast RSS feed `https://rss.beehiiv.com/podcasts/019fede3-607b-7f64-bcbf-b101b95dc069.xml`). Each episode card gets its `itunes:image` artwork (falling back to the channel image), title, date, formatted duration, description, and a native `<audio controls>` player pointed at the `<enclosure>` URL — no third-party embed needed. Falls back to a "coming soon" placeholder if the feed is empty or the fetch fails. The nav's `.nav-coming-soon` gate on Podcast was removed sitewide once real episodes existed.
 
 ## Common Tasks for Claude Code
@@ -158,4 +158,4 @@ Drop a new file into `book/images/` and update the `src` path.
 → Posts render from live Beehiiv RSS via the Netlify Function — no manual card-adding needed; new Beehiiv posts appear automatically on next page load.
 
 **"Add a new Spotify playlist"**
-→ In `site/spotify.html`, append the playlist's ID (or full URL) to the `PLAYLIST_IDS` array — it renders as a new card automatically, no other markup changes needed.
+→ In `site/radio.html`, append the playlist's ID (or full URL) to the `PLAYLIST_IDS` array — it renders as a new card automatically, no other markup changes needed.

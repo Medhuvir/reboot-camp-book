@@ -10,7 +10,7 @@ The primary deployed asset is the marketing site at [rebootcampcoaching.com](htt
 python -m http.server 3737
 ```
 
-Then open `http://localhost:3737/site/index.html`. Pages: `index.html`, `newsletter.html`, `podcast.html`, `spotify.html`. Shared nav behavior lives in `site/nav.js`.
+Then open `http://localhost:3737/site/index.html`. Pages: `index.html`, `newsletter.html`, `podcast.html`, `radio.html`. Shared nav behavior lives in `site/nav.js`.
 
 ## Ebook
 
