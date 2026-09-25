@@ -4,8 +4,9 @@
     {
       "name": "reboot-camp-preview",
       "runtimeExecutable": "node",
-      "runtimeArgs": ["scripts/dev-server.js", "3737"],
-      "port": 3737
+      "runtimeArgs": ["scripts/dev-server.js"],
+      "port": 3737,
+      "autoPort": true
     }
   ]
 }

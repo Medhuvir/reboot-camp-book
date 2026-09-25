@@ -4,14 +4,14 @@
 // /api/* requests, mirroring netlify.toml's redirect. Reads KEY=value lines
 // from .env into process.env. Node standard library only.
 //
-// Usage: node scripts/dev-server.js [port]
+// Usage: node scripts/dev-server.js [port]   (PORT env var takes precedence)
 
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
-const PORT = Number(process.argv[2]) || 3737;
+const PORT = Number(process.env.PORT) || Number(process.argv[2]) || 3737;
 
 const MIME = {
   '.html': 'text/html; charset=utf-8',

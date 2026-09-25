@@ -11,8 +11,9 @@
 
 const API_BASE = 'https://api.beehiiv.com/v2';
 
-// Must match the custom field names in Beehiiv exactly.
-// TODO(dan): confirm against GET /v2/publications/{id}/custom_fields
+// Must match the custom field display names in Beehiiv exactly (the API
+// matches on display name, not the first_name/last_name merge-tag key).
+// Confirmed against the "A Letter from Camp" publication, Sept 2026.
 const FIRST_NAME_FIELD = 'First Name';
 const LAST_NAME_FIELD = 'Last Name';
 
