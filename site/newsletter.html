@@ -120,8 +120,16 @@
     <h1 class="cover-title animate-heading">The Newsletter</h1>
     <div class="cover-rule"></div>
     <p class="landing-hero-sub">Get helpful tools, insights, and inspiration delivered to your inbox every week. Check out past issues below.</p>
-    <script type="text/javascript" async src="https://subscribe-forms.beehiiv.com/attribution.js"></script>
-    <script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="da6b4444-b830-4bdc-b82e-87c94e81a63c"></script>
+    <form class="signup-form signup-form-inline" action="/api/subscribe" method="post" novalidate>
+      <div class="signup-row">
+        <label class="signup-field"><span class="signup-label">First name</span><input class="signup-input" type="text" name="first_name" autocomplete="given-name" maxlength="100"></label>
+        <label class="signup-field"><span class="signup-label">Last name</span><input class="signup-input" type="text" name="last_name" autocomplete="family-name" maxlength="100"></label>
+      </div>
+      <label class="signup-field"><span class="signup-label">Email</span><input class="signup-input" type="email" name="email" autocomplete="email" maxlength="254" required></label>
+      <div class="signup-hp" aria-hidden="true"><label>Company <input type="text" name="company" tabindex="-1" autocomplete="off"></label></div>
+      <button type="submit" class="cta-button cta-button-no-glow signup-submit">Subscribe</button>
+      <p class="signup-error" role="alert" hidden></p>
+    </form>
     <p class="newsletter-disclaimer">Unsubscribe anytime.</p>
   </div>
 </header>
@@ -159,16 +167,37 @@
 <div id="ebook-modal" class="ebook-modal" role="dialog" aria-modal="true" aria-labelledby="ebook-modal-title" aria-hidden="true">
   <div class="ebook-modal-backdrop" id="ebook-modal-backdrop"></div>
   <div class="ebook-modal-panel">
-    <button type="button" class="ebook-modal-close" id="ebook-modal-close" aria-label="Close signup form">
+    <button type="button" class="ebook-modal-close" id="ebook-modal-close" aria-label="Close">
       <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
         <path d="M1 1L11 11M1 11L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
       </svg>
     </button>
-    <span class="toc-overline">Free Ebook</span>
-    <div class="cover-rule ebook-modal-rule"></div>
-    <h2 class="ebook-modal-title" id="ebook-modal-title">Sign up for our newsletter to get access to your free ebook</h2>
-    <script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="da6b4444-b830-4bdc-b82e-87c94e81a63c"></script>
-    <p class="ebook-modal-disclaimer">Unsubscribe anytime.</p>
+    <div class="ebook-modal-view" data-view="form">
+      <span class="toc-overline">Free Ebook</span>
+      <div class="cover-rule ebook-modal-rule"></div>
+      <h2 class="ebook-modal-title" id="ebook-modal-title">Sign up for our newsletter to get access to your free ebook</h2>
+      <form class="signup-form" action="/api/subscribe" method="post" novalidate>
+        <div class="signup-row">
+          <label class="signup-field"><span class="signup-label">First name</span><input class="signup-input" type="text" name="first_name" autocomplete="given-name" maxlength="100"></label>
+          <label class="signup-field"><span class="signup-label">Last name</span><input class="signup-input" type="text" name="last_name" autocomplete="family-name" maxlength="100"></label>
+        </div>
+        <label class="signup-field"><span class="signup-label">Email</span><input class="signup-input" type="email" name="email" autocomplete="email" maxlength="254" required></label>
+        <div class="signup-hp" aria-hidden="true"><label>Company <input type="text" name="company" tabindex="-1" autocomplete="off"></label></div>
+        <button type="submit" class="cta-button cta-button-no-glow signup-submit">Send My Free Ebook</button>
+        <p class="signup-error" role="alert" hidden></p>
+      </form>
+      <p class="ebook-modal-disclaimer">Unsubscribe anytime.</p>
+    </div>
+    <div class="ebook-modal-view" data-view="success" hidden>
+      <span class="toc-overline">Free Ebook</span>
+      <div class="cover-rule ebook-modal-rule"></div>
+      <h2 class="ebook-modal-title" id="ebook-modal-success-title" tabindex="-1">Congratulations! Your free ebook was sent.</h2>
+      <p class="ebook-modal-text">If you don't see it in your inbox, please check your junk mail folder. Unfortunately, some mail carriers send it there in error.</p>
+      <div class="ebook-modal-actions">
+        <a href="../book/output/reboot-camp.pdf" class="cta-button cta-button-no-glow" target="_blank" rel="noopener">Download the Ebook</a>
+        <a href="https://calendly.com/bill-rebootcampcoaching" class="cta-button-secondary" aria-label="Book a Call" target="_blank" rel="noopener">Book a Call</a>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -194,36 +223,6 @@
   headings.forEach(function(h) { observer.observe(h); });
 })();
 
-(function() {
-  var modal = document.getElementById('ebook-modal');
-  var closeBtn = document.getElementById('ebook-modal-close');
-  var backdrop = document.getElementById('ebook-modal-backdrop');
-  if (!modal) return;
-
-  function openModal() {
-    modal.classList.add('is-open');
-    modal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-    if (closeBtn) closeBtn.focus();
-  }
-
-  function closeModal() {
-    modal.classList.remove('is-open');
-    modal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-  }
-
-  document.querySelectorAll('.ebook-signup-trigger').forEach(function(el) {
-    el.addEventListener('click', openModal);
-  });
-
-  if (closeBtn) closeBtn.addEventListener('click', closeModal);
-  if (backdrop) backdrop.addEventListener('click', closeModal);
-
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
-  });
-})();
 
 (function() {
   var wrap = document.getElementById('newsletter-posts');
@@ -287,6 +286,7 @@
 })();
 </script>
 
+<script src="signup.js" defer></script>
 <script src="nav.js" defer></script>
 </body>
 </html>
