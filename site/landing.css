@@ -186,6 +186,58 @@
   margin-top: 0;
 }
 
+/* Homepage hero with the ebook cover beside the text + CTA.
+   Desktop: text and actions on the left, cover spanning both rows on the right.
+   Narrow: cover stacks between the subhead and the CTA. */
+.landing-hero-has-cover {
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 380px);
+  grid-template-areas:
+    "text    cover"
+    "actions cover";
+  grid-template-rows: auto 1fr;
+  column-gap: 48px;
+  align-items: center;
+}
+
+.landing-hero-text { grid-area: text; align-self: end; }
+.landing-hero-has-cover .landing-hero-actions { grid-area: actions; align-self: start; }
+
+.landing-hero-cover {
+  grid-area: cover;
+  margin: 0;
+}
+
+.landing-hero-cover img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  border-top: 3px solid var(--cyan);
+  box-shadow: 0 24px 48px rgba(0,0,0,0.45);
+  transform: rotate(2deg);
+}
+
+@media (max-width: 860px) {
+  .landing-hero-has-cover {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto;
+    grid-template-areas:
+      "text"
+      "cover"
+      "actions";
+  }
+  .landing-hero-cover {
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto 32px;
+  }
+  .landing-hero-cover img {
+    transform: none;
+  }
+}
+
 /* .cta-button-secondary shares the exact box geometry of .cta-button
    (display, box-sizing, padding, border width, border-radius) — only
    fill vs. outline differs. Defined here since landing.css isn't
