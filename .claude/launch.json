@@ -3,8 +3,8 @@
   "configurations": [
     {
       "name": "reboot-camp-preview",
-      "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "http.server", "3737", "-d", "."],
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["scripts/dev-server.js", "3737"],
       "port": 3737
     }
   ]
