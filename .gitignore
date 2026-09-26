@@ -7,3 +7,6 @@ __pycache__/
 
 # Local Netlify folder
 .netlify
+
+# Local secrets (Beehiiv API key for netlify/functions/subscribe.js)
+.env

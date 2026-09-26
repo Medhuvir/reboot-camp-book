@@ -186,6 +186,58 @@
   margin-top: 0;
 }
 
+/* Homepage hero with the ebook cover beside the text + CTA.
+   Desktop: text and actions on the left, cover spanning both rows on the right.
+   Narrow: cover stacks between the subhead and the CTA. */
+.landing-hero-has-cover {
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 380px);
+  grid-template-areas:
+    "text    cover"
+    "actions cover";
+  grid-template-rows: auto 1fr;
+  column-gap: 48px;
+  align-items: center;
+}
+
+.landing-hero-text { grid-area: text; align-self: end; }
+.landing-hero-has-cover .landing-hero-actions { grid-area: actions; align-self: start; }
+
+.landing-hero-cover {
+  grid-area: cover;
+  margin: 0;
+}
+
+.landing-hero-cover img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  border-top: 3px solid var(--cyan);
+  box-shadow: 0 24px 48px rgba(0,0,0,0.45);
+  transform: rotate(2deg);
+}
+
+@media (max-width: 860px) {
+  .landing-hero-has-cover {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto;
+    grid-template-areas:
+      "text"
+      "cover"
+      "actions";
+  }
+  .landing-hero-cover {
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto 32px;
+  }
+  .landing-hero-cover img {
+    transform: none;
+  }
+}
+
 /* .cta-button-secondary shares the exact box geometry of .cta-button
    (display, box-sizing, padding, border width, border-radius) — only
    fill vs. outline differs. Defined here since landing.css isn't
@@ -554,49 +606,89 @@
   margin: 12px 0 28px;
 }
 
-.newsletter-form {
+/* Native signup form (posts to /api/subscribe) — used in the ebook modal
+   and inline in the homepage newsletter block + newsletter hero. Always sits
+   on a dark background. */
+.signup-form {
   display: flex;
-  border: 1px solid rgba(248,250,252,0.25);
+  flex-direction: column;
+  gap: 14px;
   max-width: 440px;
 }
 
-.newsletter-input {
-  flex: 1;
+.signup-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.signup-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
   min-width: 0;
-  background: transparent;
-  border: none;
-  padding: 16px 20px;
+}
+
+.signup-label {
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--pewter);
+}
+
+.signup-input {
+  width: 100%;
+  box-sizing: border-box;
+  background: rgba(248,250,252,0.04);
+  border: 1px solid rgba(248,250,252,0.25);
+  border-radius: 4px;
+  padding: 14px 16px;
   color: #F8FAFC;
   font-family: 'Inter', system-ui, sans-serif;
-  font-size: 14px;
+  font-size: 16px; /* 16px stops iOS zooming on focus */
   font-weight: 500;
+  transition: border-color 0.2s, background 0.2s;
 }
 
-.newsletter-input::placeholder {
-  color: rgba(248,250,252,0.5);
-}
-
-.newsletter-input:focus {
+.signup-input:focus {
   outline: none;
-  background: rgba(248,250,252,0.05);
+  border-color: var(--cyan);
+  background: rgba(248,250,252,0.07);
 }
 
-.newsletter-submit {
-  background: var(--cyan);
-  color: #000000;
-  border: none;
-  padding: 16px 28px;
-  font-size: 11px;
-  font-weight: 900;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  white-space: nowrap;
+.signup-submit {
+  margin-top: 6px;
+  width: 100%;
   cursor: pointer;
-  transition: background 0.2s;
+  font-family: 'Inter', system-ui, sans-serif;
 }
 
-.newsletter-submit:hover {
-  background: var(--cyan-deep);
+.signup-submit:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.signup-error {
+  font-size: 13px;
+  font-weight: 500;
+  color: #FCA5A5;
+  margin: 0;
+}
+
+/* Honeypot — off-screen, never visible to people */
+.signup-hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+@media (max-width: 400px) {
+  .signup-row {
+    grid-template-columns: 1fr;
+  }
 }
 
 .newsletter-disclaimer {
@@ -727,6 +819,9 @@ button.promo-card-cta {
   background: var(--midnight);
   max-width: 500px;
   width: 100%;
+  max-height: calc(100vh - 48px);
+  max-height: calc(100dvh - 48px);
+  overflow-y: auto;
   padding: 48px 40px 40px;
   border-top: 3px solid var(--cyan);
 }
@@ -767,6 +862,28 @@ button.promo-card-cta {
   color: #F8FAFC;
   line-height: 1.1;
   margin: 0 0 28px;
+}
+
+.ebook-modal-text {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: rgba(248,250,252,0.8);
+  margin-bottom: 28px;
+}
+
+.ebook-modal-title:focus {
+  outline: none;
+}
+
+.ebook-modal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.ebook-modal-actions .cta-button {
+  margin-top: 0;
 }
 
 .ebook-modal-disclaimer {

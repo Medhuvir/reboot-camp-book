@@ -13,6 +13,7 @@ site/                    ← primary marketing website
   style.css               (shared Blueprint design tokens)
   landing.css             (site-specific overrides, nav behavior)
   nav.js                  (shared hamburger-menu toggle, used by every page incl. book/)
+  signup.js               (shared signup: ebook modal open/close, native form → /api/subscribe, in-modal confirmation)
   images/                 (marketing-only + assets shared with book/)
 
 book/                     ← ebook builder, secondary
@@ -25,6 +26,8 @@ book/                     ← ebook builder, secondary
   output/reboot-camp.pdf    (committed; .epub and .docx are gitignored build output)
 
 netlify/functions/beehiiv-posts.js   ← proxies the Beehiiv RSS feed (CORS workaround)
+netlify/functions/subscribe.js       ← signup form → Beehiiv Create Subscription API (needs env vars, see below)
+scripts/dev-server.js                ← local preview server: static files + /api/* functions, reads .env
 netlify.toml               ← build command flattens site/ into publish root, nests book/ underneath
 robots.txt / sitemap.xml   ← repo root, scoped to rebootcampcoaching.com
 ```
@@ -35,9 +38,9 @@ Images that appear on both site and book pages (logo, favicon, DN Creative credi
 
 ### Preview
 ```bash
-python -m http.server 3737
+node scripts/dev-server.js
 ```
-Open `http://localhost:3737/site/index.html`.
+Open `http://localhost:3737/site/index.html`. Serves the repo root and runs `netlify/functions/*` for `/api/*` (so the newsletter feed, podcast feed, and signup form all work locally). Put `BEEHIIV_API_KEY` / `BEEHIIV_PUBLICATION_ID` in a gitignored `.env` to test real signups.
 
 ### Nav
 Every page (`site/*.html` and `book/index.html`) shares the same nav markup inside `<nav id="landing-nav">`: standard inline links (`.landing-nav-link`) + the Book a Call CTA button on desktop, with a `.nav-toggle` hamburger button that's hidden until ≤640px, where it replaces the (now-hidden) inline links and opens the `.nav-menu` drawer + `.nav-overlay` backdrop. Behavior is driven by `site/nav.js` (adds/removes a `.nav-open` class; button click, close button, overlay click, and Escape all close it). The `.landing-nav-link:not(.cta-button) { display: none; }` rule in `landing.css` is what hides the inline links at ≤640px — the toggle's own visibility is gated the opposite way (`display: none` by default, `display: flex` only inside that same breakpoint).
@@ -132,7 +135,7 @@ Drop a new file into `book/images/` and update the `src` path.
 
 ## Beehiiv / Spotify / Podcast Integration
 
-- **Newsletter signup** (all pages): Beehiiv embed script with `data-beehiiv-form="f8115a3a-3103-4c8f-bd59-3f20fd999560"` — reuse this exact form ID for any new signup CTA.
+- **Newsletter / ebook signup** (all pages): native `<form class="signup-form">` (first name, last name, email, hidden honeypot) styled in `landing.css`, handled by `site/signup.js`, posted to `/api/subscribe` → `netlify/functions/subscribe.js` → Beehiiv `POST /v2/publications/{id}/subscriptions`. Lives in the `#ebook-modal` on every page, plus inline in the homepage newsletter block and the newsletter hero (`.signup-form-inline`). On success the modal switches to its `data-view="success"` confirmation ("Congratulations! Your free ebook was sent." + Download + Book a Call); closing it returns to the form view. Env vars (Netlify → Environment variables, locally `.env`): `BEEHIIV_API_KEY`, `BEEHIIV_PUBLICATION_ID`, optional `BEEHIIV_AUTOMATION_ID` (welcome/ebook automation new subscribers are enrolled in). First/last name go to Beehiiv custom fields named in `subscribe.js`. The old Beehiiv iframe embed (form `da6b4444-…`) is no longer used.
 - **Newsletter posts** (`site/newsletter.html`): client-side `fetch('/api/beehiiv-posts')`, proxied server-side by `netlify/functions/beehiiv-posts.js` (RSS feed `https://rss.beehiiv.com/feeds/UvfEUB9QlF.xml`, avoids CORS). The function returns `title`, `description` (RSS subhead), `excerpt` (first real paragraph scraped from `content:encoded`, HTML-stripped), `link`, `pubDate`, and `image` (from `<enclosure>`) per post. Cards show `excerpt` (falling back to `description`), the thumbnail if `image` is present, and paginate client-side at 10 posts per page (Previous/Next, hidden when there's only one page) — nothing sends users off to Beehiiv's own archive except the true fetch-failure fallback link to `https://rebootcamp.beehiiv.com/archive`.
 - **Spotify playlists** (`site/radio.html`): rendered as a stack of cards (reusing `.process-grid`/`.process-card`), one official Spotify iframe embed per playlist. IDs live in the `PLAYLIST_IDS` array in the page's own `<script>`, newest first — add a new playlist by prepending its ID or full `open.spotify.com/playlist/...` URL to the top of that array. Currently live: `7m346o4F4jK9tjYTnwal5V` and `6Ijih7xZ0GKLVmbZYFnJN0` ("Summer Camp '26 Mix", Reboot Radio profile). If the array is emptied, the page falls back to a "coming soon" placeholder.
 - **Podcast** (`site/podcast.html`): live, same pattern as the newsletter — client-side `fetch('/api/podcast-episodes')` proxied by `netlify/functions/podcast-episodes.js` (podcast RSS feed `https://rss.beehiiv.com/podcasts/019fede3-607b-7f64-bcbf-b101b95dc069.xml`). Each episode card gets its `itunes:image` artwork (falling back to the channel image), title, date, formatted duration, description, and a native `<audio controls>` player pointed at the `<enclosure>` URL — no third-party embed needed. Falls back to a "coming soon" placeholder if the feed is empty or the fetch fails. The nav's `.nav-coming-soon` gate on Podcast was removed sitewide once real episodes existed.
