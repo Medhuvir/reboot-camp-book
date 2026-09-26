@@ -48,6 +48,9 @@
       el.addEventListener('click', function() { openModal('form'); });
     });
     if (closeBtn) closeBtn.addEventListener('click', closeModal);
+    modal.querySelectorAll('[data-modal-close]').forEach(function(el) {
+      el.addEventListener('click', closeModal);
+    });
     if (backdrop) backdrop.addEventListener('click', closeModal);
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
