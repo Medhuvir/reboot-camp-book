@@ -9,3 +9,20 @@
   from = "/api/*"
   to = "/.netlify/functions/:splat"
   status = 200
+
+# Always revalidate CSS/JS so returning visitors never get a stale
+# landing.css paired with newer HTML (unstyled signup modal in Chrome).
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/book/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
